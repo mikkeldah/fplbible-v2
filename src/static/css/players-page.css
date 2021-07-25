@@ -1,0 +1,146 @@
+#players-main {
+    width: 90%;
+    height: 700px;
+    background-color: white;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+/* SEARCH BAR */
+
+#search-bar-container {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-bar {
+    padding: 5px;
+    width: 200px;
+    height: 25px;
+    border: 1.5px solid rgb(206, 203, 203);
+    border-radius: 4px;
+}
+
+/* END SEARCH BAR */
+
+#players-container {
+    margin: 0 auto;
+    width: 90%;
+    height: 560px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    justify-content: center;
+    background-color: #ebebeb;
+    border-radius: 6px;
+    padding-top: 20px;
+}
+
+#player-box {
+    color: black;
+    background-color: rgb(255, 255, 255);
+    width: 265px;
+    height: 265px;
+    font-size: 12px;
+    margin: 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5%;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px rgb(170, 167, 167);
+    border-bottom: 3px solid #00ff85;
+}
+
+#player-box-title {
+    width: 95%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 5px;
+}
+
+
+#player-box h2 {
+    text-align: center;
+}
+
+#player-box p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+#player-box-labels-and-values-container {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#team-color-box {
+    width: 30px;
+    height: 30px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px rgb(170, 167, 167);
+    border-radius: 50%;
+
+}
+
+#team-name-and-color-container {
+    display: flex;
+    margin: 5px 0;
+}
+
+#player-show-fixtures-short {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.fixture-box {
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.fixture-box-outer h4 {
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #ffffff; 
+}
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(161, 161, 161); 
+}
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* SCROLLBAR END */

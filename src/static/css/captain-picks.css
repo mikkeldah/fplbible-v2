@@ -1,0 +1,211 @@
+#captain-picks-main {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 6px;
+    margin-bottom: 40px;
+}
+
+/* TABS START */
+
+#captain-picks-tab-container {
+    height: 30px;
+    width: 100%;
+    display: flex;
+}
+
+.captain-picks-tab {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px 15px 0 0;
+}
+
+.captain-picks-tab:hover {
+    cursor: pointer;
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+}
+
+
+/* TABS END */
+
+/* CAPTAIN PICKS START */
+
+.captain-picks-container {
+    background-color: white;
+    width: 100%;
+    background-color: #f0f0f0;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CAPTAIN PICKS GENERAL START */
+
+#captain-picks-general-title {
+    height: 70px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#captain-picks-general-picks-container {
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+.captain-picks-general-captain-pick {
+    height: 220px;
+    width: 270px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.captain-picks-general-captain-pick-title-container {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.captain-picks-general-captain-pick-title-container h2 {
+    margin-left: 10px;
+}
+
+.captain-picks-general-captain-pick-info-container {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+/* CAPTAIN PICKS GENERAL END */
+
+/* CAPTAIN PICKS CUSTOM START */
+
+#captain-picks-custom-insert-team-container {
+    width: 100%;
+    display: flex;
+
+
+}
+
+#captain-picks-custom-insert-team-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    height: 195px;
+    border-right: 1px solid rgb(199, 199, 199);
+}
+
+#captain-picks-custom-insert-team-search-results {
+    height: 100px;
+    width: 95%;
+    overflow-y: scroll;
+    border: 1px solid rgb(207, 206, 206);
+    border-radius: 5px;
+}
+
+.captain-picks-custom-insert-team-search-result {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    padding-left: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.add-player-box {
+    background-color: turquoise;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+
+}
+
+.add-player-box:hover {
+    cursor: pointer;
+}
+
+.add-player-box p {
+    margin-bottom: 3px;
+}
+
+/* ADDED PLAYERS CONTAINER */
+
+#captain-picks-custom-insert-team-added-players-container {
+    width: 75%;
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.captain-picks-custom-insert-team-added-player-box {
+    background-color: white;
+    width: 195px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 5px;
+    margin-top: 14px;
+    margin-left: 12px;
+}
+
+.remove-player-box {
+    height: 15px;
+    width: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+
+}
+
+.remove-player-box p {
+    font-family:'Courier New', Courier, monospace;
+    color: rgb(187, 187, 187);
+    font-size: 1.2rem;
+}
+
+.remove-player-box:hover {
+    cursor: pointer;
+}
+
+/* ADDED PLAYERS CONTAINER END */
+
+/* CAPTAIN PICKS CUSTOM END */
+
+/* CAPTAIN PICKS END*/
+
+@media only screen and (max-width: 1080px) {
+    #captain-picks-general-picks-container {
+        flex-direction: column;
+    }
+}
