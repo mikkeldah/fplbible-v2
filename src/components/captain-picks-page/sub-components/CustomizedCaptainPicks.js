@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import TeamColorLogo from '../../../utils/TeamColors';
+import CaptainPick from './CaptainPick';
 
 function Customized( props ) {
 
@@ -8404,10 +8405,12 @@ function Customized( props ) {
 
     const [ selectedPlayers, setSelectedPlayers ] = useState([]);
 
+    const [ fixtureData, setFixtureData ] = useState(rawFixData)
+
     const handleAddPlayerClicked = (player) => {
         //possibly need to show error message here..
         if (selectedPlayers.length !== 15) {
-            setSelectedPlayers([...selectedPlayers, player])
+            setSelectedPlayers([...selectedPlayers, player].sort((a, b) => (a.cScore > b.cScore) ? 1 : -1))
             setPlayerData((playerData) => playerData.filter(p => p.id !== player.id))
         }
 
@@ -8416,10 +8419,8 @@ function Customized( props ) {
     //NB! Needs to sort players like they were..
     const handleRemovePlayerClicked = (player) => {
         //possibly need to show error message here..
-        if (selectedPlayers.length !== 15) {
-            setPlayerData([...playerData, player])
-            setSelectedPlayers((selectedPlayers) => selectedPlayers.filter(p => p.id !== player.id))
-        }
+        setPlayerData([...playerData, player])
+        setSelectedPlayers((selectedPlayers) => selectedPlayers.filter(p => p.id !== player.id).sort((a, b) => (a.cScore > b.cScore) ? 1 : -1))
 
     }
 
@@ -8451,22 +8452,137 @@ function Customized( props ) {
                     </div>
                 </div>
                 {/* Add player end */}
-                <div id="captain-picks-custom-insert-team-added-players-container">
-                    {selectedPlayers.map((player) => {
-                        return (
-                            <div className="captain-picks-custom-insert-team-added-player-box">
-                                <div style={{display: 'flex', alignItems: 'center', marginLeft: '5px'}}>
-                                    <TeamColorLogo teamName={player.short_name} diameter={'15px'}/>
-                                    <p style={{marginLeft: '5px'}}>{player.web_name} ({player.short_name})</p>
+                {/* Added players start */}
+                <div id="captain-picks-custom-added-players-wrapper">
+                    <div id="captain-picks-custom-insert-team-added-players-container">
+                        {selectedPlayers.map((player) => {
+                            return (
+                                <div className="captain-picks-custom-insert-team-added-player-box">
+                                    <div style={{display: 'flex', alignItems: 'center', height: '35px', justifyContent: 'center'}}>
+                                        <p style={{fontSize: '0.9rem', textAlign: 'center'}}>{player.web_name}</p>
+                                    </div>    
+                                    <div style={{display: 'flex', alignItems: 'center'}}>
+                                        <TeamColorLogo teamName={player.short_name} diameter={'15px'}/>
+                                        <p style={{marginLeft: '4px', fontSize: '0.8rem'}}>({player.short_name})</p>
+                                    </div>
+                                    <div className="remove-player-box" onClick={() => {handleRemovePlayerClicked(player)}}><p>×</p></div>
                                 </div>
-                                <div className="remove-player-box" onClick={() => {handleRemovePlayerClicked(player)}}><p>×</p></div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
+                {/* Added players end */}
+            </div>
+            <div id="captain-picks-custom-results-container">
+                <h2 style={{ margin: '15px'}}>Best captain pick for GWX</h2>
+                {getTopCaptainPick(selectedPlayers, fixtureData).map((instance) => {
+                    const [ player, cScore ] = instance;
+                    return (
+                        <div>
+                            <CaptainPick 
+                                name={player.web_name}
+                                team={player.short_name}
+                                price={player.price}
+                                pointsPerGame={player.points_per_game}
+                                cScore={cScore.toFixed(2)}
+                                nextGame={nextGame(fixtureData, player.short_name)}
+                            />  
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
+}
+
+
+function getTopCaptainPick(playerData, fixtureData) {
+    let topThreeCScorePlayers = []
+
+    //Filtering: available etc.
+    //
+
+    const topPPPPG = getTopAttributeScore(playerData, 'points_per_game')
+    const topICT = getTopAttributeScore(playerData, 'ict_index')
+
+    for (const key in playerData) {
+        const player = playerData[key]
+
+        console.log(fixtureData)
+        console.log(player.short_name)
+        console.log(nextGame(fixtureData, player.short_name))
+        
+        if (topThreeCScorePlayers.length !== 1) {
+            //Calculation of cScore
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            topThreeCScorePlayers.push([player, cScore])
+        }
+        else {
+            //Calculation of cScore
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            const pickWithMinScore = getMinCaptainPick(topThreeCScorePlayers);
+
+            console.log(player.web_name, cScore, pickWithMinScore)
+
+            if (cScore > pickWithMinScore[1]) {
+                const index = topThreeCScorePlayers.findIndex((element, index) => {
+                    if (element[1] === pickWithMinScore[1]) {
+                        return true;
+                    }
+                })
+
+                topThreeCScorePlayers.splice(index, 1, [player, cScore]);
+            }
+
+        }
+    }
+    //topThreeCScorePlayers = [[player1, cScoreP1], [player2, cScoreP2],..]
+    return topThreeCScorePlayers;
+}
+
+function nextGame(fixData, teamNameShort) {
+    let fixList = []
+    for (const fixId in fixData) {
+        const fix = fixData[fixId]
+        if (!fix['finished'] && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
+            if ( fix['short_name_h'] === teamNameShort ) {
+                fixList.push([fix['gameweek'], fix['short_name_a'], fix['team_h_difficulty'], 'H'])
+            }
+            if ( fix['short_name_a'] === teamNameShort ) {
+                fixList.push([fix['gameweek'], fix['short_name_h'], fix['team_a_difficulty'], 'A'])
+            }
+            if (fixList.length === 1) {
+                return fixList;
+            }
+        }
+    }
+
+    return fixList;
+}
+
+function getMinCaptainPick(topThree) {
+    let res = topThree[0]
+
+    for (let i = 1; i < topThree.length; i++) {
+        if (topThree[i][1] < res[1]) {
+            res = topThree[i]
+        }
+    }
+
+    return res;
+}
+
+function getTopAttributeScore(data, att) {
+    let topScore = 0;
+
+    for (const key in data) {
+        const player = data[key]
+        if (player[att] > topScore) {
+            topScore = player[att];
+        }
+    }
+
+    return topScore;
 }
 
 export default Customized;

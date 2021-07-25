@@ -42,6 +42,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 40px;
 }
 
 /* CAPTAIN PICKS GENERAL START */
@@ -52,7 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px 0;
+    margin-top: 30px;
 }
 
 #captain-picks-general-picks-container {
@@ -60,7 +61,6 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding-bottom: 40px;
 }
 
 .captain-picks-general-captain-pick {
@@ -98,8 +98,10 @@
 /* CAPTAIN PICKS CUSTOM START */
 
 #captain-picks-custom-insert-team-container {
-    width: 100%;
+    width: 97%;
     display: flex;
+    justify-content: space-between;
+    margin: 30px 0 20px 0;
 
 
 }
@@ -108,13 +110,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
-    height: 195px;
-    border-right: 1px solid rgb(199, 199, 199);
+    width: 24%;
+    height: 220px;
+    background-color: white;
+    border-radius: 15px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    padding: 0 5px 0 5px;
 }
 
 #captain-picks-custom-insert-team-search-results {
-    height: 100px;
+    height: 125px;
     width: 95%;
     overflow-y: scroll;
     border: 1px solid rgb(207, 206, 206);
@@ -153,29 +160,39 @@
 
 /* ADDED PLAYERS CONTAINER */
 
+#captain-picks-custom-added-players-wrapper {
+    width: 74%;
+    background-color: white;
+    min-height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+}
+
 #captain-picks-custom-insert-team-added-players-container {
-    width: 75%;
-    height: 200px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    align-items: center;
-    overflow-y: scroll;
+    justify-content: center;
 }
 
 .captain-picks-custom-insert-team-added-player-box {
     background-color: white;
-    width: 195px;
-    height: 30px;
+    width: 90px;
+    height: 90px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     -moz-box-shadow: 0 0 3px #ccc;
     -webkit-box-shadow: 0 0 3px #ccc;
     box-shadow: 0 0 3px #ccc;
     border-radius: 5px;
-    margin-top: 14px;
-    margin-left: 12px;
+    margin: 5px;
 }
 
 .remove-player-box {
@@ -184,7 +201,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 6px;
+    margin-bottom: 6px;
 
 }
 
@@ -198,14 +215,72 @@
     cursor: pointer;
 }
 
+
 /* ADDED PLAYERS CONTAINER END */
+
+/* RESULTS START */
+
+#captain-picks-custom-results-container {
+    width: 95%;
+    height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* RESULTS END */
 
 /* CAPTAIN PICKS CUSTOM END */
 
 /* CAPTAIN PICKS END*/
 
 @media only screen and (max-width: 1080px) {
+
+    #captain-picks-main {
+        width: 95%;
+    }
+
     #captain-picks-general-picks-container {
         flex-direction: column;
+
     }
+
+    .captain-picks-general-captain-pick {
+        margin: 20px 0;
+    }
+
+    #captain-picks-custom-insert-team-container {
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    #captain-picks-custom-insert-team-input-container {
+        width: 70%;
+        border-right: 0;
+        border-bottom: 1px solid rgb(199, 199, 199);
+    }
+
+    #captain-picks-custom-added-players-wrapper {
+        width: 97%;
+        margin: 10px 0;
+        padding: 15px 0;
+    }
+
+    #captain-picks-custom-results-container {
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+
+    .hide-when-small-screen {
+        display: none;
+    }
+    
 }
+
+

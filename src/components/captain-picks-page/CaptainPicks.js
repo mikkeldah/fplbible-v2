@@ -45,7 +45,7 @@ function Tab( props ) {
 
     return (
         <div className="captain-picks-tab" onClick={handleClick} style={{backgroundColor: props.color}}>
-            <h4>{props.text} <span>CAPTAIN PICKS</span></h4>
+            <h4>{props.text} <span className="hide-when-small-screen">CAPTAIN PICKS</span></h4>
         </div>
     )
 }

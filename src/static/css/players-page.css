@@ -124,23 +124,23 @@
 /* SCROLLBAR */
 
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
-}
+} */
   
   /* Track */
-  ::-webkit-scrollbar-track {
+  /* ::-webkit-scrollbar-track {
     background: #ffffff; 
-}
+} */
    
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
     background: rgb(161, 161, 161); 
 }
-  
+   */
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+  /* ::-webkit-scrollbar-thumb:hover {
     background: #555; 
-}
-
+}  */
+ 
 /* SCROLLBAR END */
