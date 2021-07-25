@@ -58,7 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR /'fantasy-react-app/build',
+            BASE_DIR /'build',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -140,5 +140,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'fantasy-react-app/build/static',
+    BASE_DIR / 'build/static',
 ]
