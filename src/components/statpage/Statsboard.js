@@ -17,7 +17,7 @@ function Statsboard( props ) {
     const [ data, setData ] = useState([]);
 
     useEffect(() => {
-        fetch('http://127.0.0.1:8000/api/app/players')
+        fetch('https://fplbible.herokuapp.com/api/app/players')
         .then(res => res.json())
         .then(data => {
             setData(data);
