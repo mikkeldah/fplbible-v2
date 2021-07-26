@@ -8410,7 +8410,7 @@ function Customized( props ) {
     const handleAddPlayerClicked = (player) => {
         //possibly need to show error message here..
         if (selectedPlayers.length !== 15) {
-            setSelectedPlayers([...selectedPlayers, player].sort((a, b) => (a.cScore > b.cScore) ? 1 : -1))
+            setSelectedPlayers([...selectedPlayers, player])
             setPlayerData((playerData) => playerData.filter(p => p.id !== player.id))
         }
 
@@ -8419,8 +8419,8 @@ function Customized( props ) {
     //NB! Needs to sort players like they were..
     const handleRemovePlayerClicked = (player) => {
         //possibly need to show error message here..
-        setPlayerData([...playerData, player])
-        setSelectedPlayers((selectedPlayers) => selectedPlayers.filter(p => p.id !== player.id).sort((a, b) => (a.cScore > b.cScore) ? 1 : -1))
+        setPlayerData([...playerData, player].sort((a, b) => (a.id > b.id) ? 1 : -1))
+        setSelectedPlayers((selectedPlayers) => selectedPlayers.filter(p => p.id !== player.id))
 
     }
 
@@ -8455,6 +8455,7 @@ function Customized( props ) {
                 {/* Added players start */}
                 <div id="captain-picks-custom-added-players-wrapper">
                     <div id="captain-picks-custom-insert-team-added-players-container">
+                        {selectedPlayers.length === 0 && <p style={{margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Add players to see the best captain picks for GWX</p>}
                         {selectedPlayers.map((player) => {
                             return (
                                 <div className="captain-picks-custom-insert-team-added-player-box">
@@ -8474,12 +8475,13 @@ function Customized( props ) {
                 {/* Added players end */}
             </div>
             <div id="captain-picks-custom-results-container">
-                <h2 style={{ margin: '15px'}}>Best captain pick for GWX</h2>
-                {getTopCaptainPick(selectedPlayers, fixtureData).map((instance) => {
+                {selectedPlayers.length === 0 && <p style={{ margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Best captain picks for GWX will appear here</p>}
+                {getTopThreeCaptainPicks(selectedPlayers, fixtureData).map((instance, i) => {
                     const [ player, cScore ] = instance;
                     return (
                         <div>
                             <CaptainPick 
+                                ranking={i+1}
                                 name={player.web_name}
                                 team={player.short_name}
                                 price={player.price}
@@ -8496,7 +8498,7 @@ function Customized( props ) {
 }
 
 
-function getTopCaptainPick(playerData, fixtureData) {
+function getTopThreeCaptainPicks(playerData, fixtureData) {
     let topThreeCScorePlayers = []
 
     //Filtering: available etc.
@@ -8507,12 +8509,8 @@ function getTopCaptainPick(playerData, fixtureData) {
 
     for (const key in playerData) {
         const player = playerData[key]
-
-        console.log(fixtureData)
-        console.log(player.short_name)
-        console.log(nextGame(fixtureData, player.short_name))
         
-        if (topThreeCScorePlayers.length !== 1) {
+        if (topThreeCScorePlayers.length !== 3) {
             //Calculation of cScore
             const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
             topThreeCScorePlayers.push([player, cScore])
@@ -8521,8 +8519,6 @@ function getTopCaptainPick(playerData, fixtureData) {
             //Calculation of cScore
             const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
             const pickWithMinScore = getMinCaptainPick(topThreeCScorePlayers);
-
-            console.log(player.web_name, cScore, pickWithMinScore)
 
             if (cScore > pickWithMinScore[1]) {
                 const index = topThreeCScorePlayers.findIndex((element, index) => {
@@ -8537,7 +8533,7 @@ function getTopCaptainPick(playerData, fixtureData) {
         }
     }
     //topThreeCScorePlayers = [[player1, cScoreP1], [player2, cScoreP2],..]
-    return topThreeCScorePlayers;
+    return topThreeCScorePlayers.sort((a, b) => (a[1] > b[1]) ? -1 : 1);
 }
 
 function nextGame(fixData, teamNameShort) {

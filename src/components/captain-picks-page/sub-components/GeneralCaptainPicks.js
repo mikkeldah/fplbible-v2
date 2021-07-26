@@ -8431,11 +8431,12 @@ function General() {
                 <h2>Top three captain picks for GW1</h2>
             </div>
             <div id="captain-picks-general-picks-container">
-                {getTopThreeCaptainPicks(playerData, fixtureData).map((instance) => {
+                {getTopThreeCaptainPicks(playerData, fixtureData).map((instance, i) => {
                     const [ player, cScore ] = instance;
                     return (
                         <div>
                             <CaptainPick 
+                                ranking={i+1}
                                 name={player.web_name}
                                 team={player.short_name}
                                 price={player.price}
@@ -8492,7 +8493,7 @@ function getTopThreeCaptainPicks(playerData, fixtureData) {
         }
     }
     //topThreeCScorePlayers = [[player1, cScoreP1], [player2, cScoreP2],..]
-    return topThreeCScorePlayers;
+    return topThreeCScorePlayers.sort((a, b) => (a[1] > b[1]) ? -1 : 1);
 }
 
 function nextGame(fixData, teamNameShort) {

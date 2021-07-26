@@ -4,6 +4,7 @@ import Fixture from "../../players-page/sub-components/Fixture";
 function CaptainPick( props ) {
     return (
         <div className="captain-picks-general-captain-pick">
+            <h3>{props.ranking}.</h3>
             <div className="captain-picks-general-captain-pick-title-container">
                 <TeamColorLogo teamName={props.team} diameter={'20px'}/>
                 <h2>{props.name} ({props.team})</h2>

@@ -42,18 +42,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+    border-radius: 0 0 15px 15px;
 }
 
 /* CAPTAIN PICKS GENERAL START */
 
 #captain-picks-general-title {
     height: 70px;
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin: 30px 0;
+    background-color: white;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    border-bottom: 2px solid gold;
 }
 
 #captain-picks-general-picks-container {
@@ -64,7 +70,7 @@
 }
 
 .captain-picks-general-captain-pick {
-    height: 220px;
+    height: 230px;
     width: 270px;
     -moz-box-shadow: 0 0 3px #ccc;
     -webkit-box-shadow: 0 0 3px #ccc;
@@ -73,6 +79,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    background-color: white;
 }
 
 .captain-picks-general-captain-pick-title-container {
@@ -101,7 +108,7 @@
     width: 97%;
     display: flex;
     justify-content: space-between;
-    margin: 30px 0 20px 0;
+    margin: 20px 0 20px 0;
 
 
 }
@@ -137,7 +144,7 @@
 }
 
 .add-player-box {
-    background-color: turquoise;
+    background-color: #00ff85;
     height: 15px;
     width: 15px;
     display: flex;
@@ -163,7 +170,7 @@
 #captain-picks-custom-added-players-wrapper {
     width: 74%;
     background-color: white;
-    min-height: 220px;
+    height: 220px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -176,8 +183,9 @@
 #captain-picks-custom-insert-team-added-players-container {
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
     justify-content: center;
+    overflow-y: auto;
+    
 }
 
 .captain-picks-custom-insert-team-added-player-box {
@@ -221,8 +229,8 @@
 /* RESULTS START */
 
 #captain-picks-custom-results-container {
-    width: 95%;
-    height: 300px;
+    width: 97%;
+    min-height: 300px;
     background-color: white;
     border-radius: 15px;
     -moz-box-shadow: 0 0 3px #ccc;
@@ -242,12 +250,18 @@
 @media only screen and (max-width: 1080px) {
 
     #captain-picks-main {
-        width: 95%;
+        width: 98%;
     }
 
     #captain-picks-general-picks-container {
         flex-direction: column;
 
+    }
+
+    #captain-picks-general-title {
+        width: 80%;
+        text-align: center;
+        padding: 10px;
     }
 
     .captain-picks-general-captain-pick {
@@ -267,18 +281,25 @@
     }
 
     #captain-picks-custom-added-players-wrapper {
-        width: 97%;
-        margin: 10px 0;
+        width: 99%;
+        margin-top: 15px;
         padding: 15px 0;
     }
 
     #captain-picks-custom-results-container {
         flex-direction: column;
-        padding-bottom: 20px;
+        padding: 20px 0;
+        width: 96%;
     }
 
     .hide-when-small-screen {
         display: none;
+    }
+
+    #captain-picks-custom-insert-team-added-players-container {
+        width: 95%;
+        height: 95%;
+        align-items: center;
     }
     
 }

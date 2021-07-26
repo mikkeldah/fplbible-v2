@@ -27,7 +27,7 @@ function NotIncludeTeamsList( props ) {
                 {includedTeams.map((team) => {
                     return (
                         <div className="rec-list-item" onClick={() => moveTeamToNotIncluded(team)} key={team}>
-                            <TeamColorLogo teamName={convertTeamNameToShort(team)}/>
+                            <TeamColorLogo teamName={convertTeamNameToShort(team)} diameter={'12px'}/>
                             <p>{team} {">"}</p>
                         </div>
                     )
@@ -37,7 +37,7 @@ function NotIncludeTeamsList( props ) {
                 {notIncludedTeams.map((team) => {
                     return (
                         <div className="rec-list-item" style={{ flexDirection: 'row-reverse', paddingRight: '5px', paddingLeft: '0'}} onClick={() => moveTeamToIncluded(team)} key={team}>
-                            <TeamColorLogo teamName={convertTeamNameToShort(team)}/>
+                            <TeamColorLogo teamName={convertTeamNameToShort(team)} diameter={'12px'}/>
                             <p style={{ marginRight: '5px'}}>{"<"} {team}</p>
                         </div>
                     )

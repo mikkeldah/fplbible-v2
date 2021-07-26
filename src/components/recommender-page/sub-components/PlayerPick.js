@@ -7,7 +7,7 @@ function PlayerPick( props ) {
                 <p className="player-pick-card-name">{props.web_name}</p>
             </div>
             <div className="player-pick-team-color-container">
-                <TeamColorLogo teamName={props.teamName} />
+                <TeamColorLogo teamName={props.teamName} diameter={'15px'}/>
                 <p>({props.teamName})</p>
             </div>
             <p>£ {props.price}</p>
