@@ -1,13 +1,17 @@
+import { useEffect, useState } from 'react';
 import Countdown from 'react-countdown';
 
 const Completionist = () => <span>EXPIRED</span>
 
-function Counter() {
+
+
+function Counter( props ) {
+    
     return (
         <div id="counter-container">
             <div id="counter">
-                <h4>GW1 Transfer Deadline</h4>
-                <Countdown date={new Date("August 13, 2021 19:30:00")}>
+                <h4>GW{props.gameweek.id} Transfer Deadline</h4>
+                <Countdown date={new Date(props.gameweek.deadline_time)}>
                     <Completionist/>
                 </Countdown>
             </div>

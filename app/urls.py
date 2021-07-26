@@ -4,4 +4,5 @@ from . import views
 urlpatterns = (
     path('app/players', views.PlayerCreate.as_view()),
     path('app/fixtures', views.FixtureCreate.as_view()),
+    path('app/gameweeks', views.GameweekCreate.as_view())
 )

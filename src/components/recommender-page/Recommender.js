@@ -8447,7 +8447,7 @@ function Recommender( props ) {
     const [ recommenderResults, setRecommenderResults ] = useState([[], [], [], []]);
 
     const searchButtonClicked = () => {
-        const results = getRecommendations(inputValues, playerData, fixtureData)
+        const results = getRecommendations(inputValues, playerData, fixtureData, props.gameweek.id)
         const nPlayersRequested = results[4]
         let nPlayersReturned = 0;
         for (let i = 0; i < results.length-1; i++) {
@@ -8549,7 +8549,7 @@ function Recommender( props ) {
     )
 }
 
-function getRecommendations(inputValues, playerData, fixtureData) {
+function getRecommendations(inputValues, playerData, fixtureData, currentGameweekID) {
     let bank = inputValues[0]
     let nGKP = inputValues[1]
     let nDEF = inputValues[2]
@@ -8559,7 +8559,7 @@ function getRecommendations(inputValues, playerData, fixtureData) {
     const nPlayersRequested = nGKP + nDEF + nMID + nFWD
     const notInclude = inputValues[5]
 
-    playerData = playerData.filter(player => player.minutes > 100)
+    playerData = playerData.filter(player => player.minutes > 0)
     playerData = playerData.filter(player => player.status === 'Available')
     playerData = playerData.filter(player => !notInclude.includes(player.team))
 
@@ -8568,7 +8568,7 @@ function getRecommendations(inputValues, playerData, fixtureData) {
     const playerDataMID = playerData.filter(player => player.position === 'MID')
     const playerDataFWD = playerData.filter(player => player.position === 'FWD')
 
-    //trying greedy algorithm
+    //greedy algorithm
 
     //lists of recommendations which will be returned
     let GKPresults = []
@@ -8593,7 +8593,7 @@ function getRecommendations(inputValues, playerData, fixtureData) {
             if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 5.5 
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
-                const rScore = (player.points_per_game / topPPPPGMID) + (player.ict_index / topICTMID) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name) / 5)
+                const rScore = (player.points_per_game / topPPPPGMID) + (player.ict_index / topICTMID) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
                 if (rScore > topRScoreMID) {
                     topPlayerMID = player;
                     topRScoreMID = rScore;
@@ -8630,7 +8630,7 @@ function getRecommendations(inputValues, playerData, fixtureData) {
             if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 5.0 
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
-                const rScore = (player.points_per_game / topPPPPGFWD) + (player.ict_index / topICTFWD) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name) / 5)
+                const rScore = (player.points_per_game / topPPPPGFWD) + (player.ict_index / topICTFWD) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
                 if (rScore > topRScoreFWD) {
                     topPlayerFWD = player;
                     topRScoreFWD= rScore;
@@ -8666,7 +8666,8 @@ function getRecommendations(inputValues, playerData, fixtureData) {
             if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.5 
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
-                const rScore = (player.points_per_game / topPPPPGDEF) + (player.ict_index / topICTDEF) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name) / 5)
+                console.log(nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID))
+                const rScore = (player.points_per_game / topPPPPGDEF) + (player.ict_index / topICTDEF) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
                 if (rScore > topRScoreDEF) {
                     topPlayerDEF = player;
                     topRScoreDEF = rScore;
@@ -8702,7 +8703,7 @@ function getRecommendations(inputValues, playerData, fixtureData) {
             if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.0 
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
-                const rScore = (player.points_per_game / topPPPPGGKP) + (player.ict_index / topICTGKP) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name) / 5)
+                const rScore = (player.points_per_game / topPPPPGGKP) + (player.ict_index / topICTGKP) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
                 if (rScore > topRScoreGKP) {
                     topPlayerGKP = player;
                     topRScoreGKP = rScore;
@@ -8728,11 +8729,11 @@ function getRecommendations(inputValues, playerData, fixtureData) {
 
 }
 
-function nextFiveGamesDiffAvg(fixData, teamNameShort) {
+function nextFiveGamesDiffAvg(fixData, teamNameShort, currentGameweekID) {
     let fixList = []
     for (const fixId in fixData) {
         const fix = fixData[fixId]
-        if (!fix['finished'] && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
+        if (( (fix['gameweek'] <= currentGameweekID + 5) && fix['gameweek'] >= currentGameweekID) && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
             if ( fix['short_name_h'] === teamNameShort ) {
                 fixList.push([fix['gameweek'], fix['short_name_a'], fix['team_h_difficulty'], 'H'])
             }
@@ -8740,6 +8741,8 @@ function nextFiveGamesDiffAvg(fixData, teamNameShort) {
                 fixList.push([fix['gameweek'], fix['short_name_h'], fix['team_a_difficulty'], 'A'])
             }
             if (fixList.length === 5) {
+                console.log(teamNameShort)
+                console.log(fixList)
                 return avgDifficultyOfFixList(fixList);
             }
         }

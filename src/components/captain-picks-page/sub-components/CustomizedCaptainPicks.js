@@ -8412,6 +8412,12 @@ function Customized( props ) {
         if (selectedPlayers.length !== 15) {
             setSelectedPlayers([...selectedPlayers, player])
             setPlayerData((playerData) => playerData.filter(p => p.id !== player.id))
+
+            const playerData2New = playerData2.filter(p => p.id !== player.id)
+            setPlayerData2(playerData2New)
+
+            document.getElementById('search-bar').value = "";
+            setPlayerData(playerData2New)
         }
 
     }
@@ -8420,6 +8426,8 @@ function Customized( props ) {
     const handleRemovePlayerClicked = (player) => {
         //possibly need to show error message here..
         setPlayerData([...playerData, player].sort((a, b) => (a.id > b.id) ? 1 : -1))
+        setPlayerData2([...playerData2, player].sort((a, b) => (a.id > b.id) ? 1 : -1))
+
         setSelectedPlayers((selectedPlayers) => selectedPlayers.filter(p => p.id !== player.id))
 
     }
@@ -8481,6 +8489,7 @@ function Customized( props ) {
                     return (
                         <div>
                             <CaptainPick 
+                                gameweek={props.gameweek}
                                 ranking={i+1}
                                 name={player.web_name}
                                 team={player.short_name}

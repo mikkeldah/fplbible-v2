@@ -49,17 +49,12 @@
 /* CAPTAIN PICKS GENERAL START */
 
 #captain-picks-general-title {
-    height: 70px;
+    height: 50px;
     width: 60%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 30px 0;
-    background-color: white;
-    -moz-box-shadow: 0 0 3px #ccc;
-    -webkit-box-shadow: 0 0 3px #ccc;
-    box-shadow: 0 0 3px #ccc;
-    border-bottom: 2px solid gold;
 }
 
 #captain-picks-general-picks-container {
@@ -79,13 +74,15 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background-color: white;
+    background: linear-gradient(#38003c 17%, white 17% 100%);
+    border-radius: 8px;
 }
 
 .captain-picks-general-captain-pick-title-container {
     display: flex;
     align-items: center;
-    margin: 15px 0;
+    margin: 10px 0;
+    margin-top: 23px;
 }
 
 .captain-picks-general-captain-pick-title-container h2 {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import CaptainPick from './CaptainPick';
 
-function General() {
+function General( props ) {
 
     //Delete before deployment
     const rawFixData = [
@@ -8428,21 +8428,22 @@ function General() {
     return (
         <div className="captain-picks-container">
             <div id="captain-picks-general-title">
-                <h2>Top three captain picks for GW1</h2>
+                <h2>Top three captain picks for GW{props.gameweek.id}</h2>
             </div>
             <div id="captain-picks-general-picks-container">
-                {getTopThreeCaptainPicks(playerData, fixtureData).map((instance, i) => {
+                {getTopThreeCaptainPicks(playerData, fixtureData, props.gameweek.id).map((instance, i) => {
                     const [ player, cScore ] = instance;
                     return (
                         <div>
                             <CaptainPick 
+                                gameweek={props.gameweek}
                                 ranking={i+1}
                                 name={player.web_name}
                                 team={player.short_name}
                                 price={player.price}
                                 pointsPerGame={player.points_per_game}
                                 cScore={cScore.toFixed(2)}
-                                nextGame={nextGame(fixtureData, player.short_name)}
+                                nextGame={nextGame(fixtureData, player.short_name, props.gameweek.id)}
                             />  
                         </div>
                     )
@@ -8452,7 +8453,7 @@ function General() {
     )
 }
 
-function getTopThreeCaptainPicks(playerData, fixtureData) {
+function getTopThreeCaptainPicks(playerData, fixtureData, currentGameweekID) {
     let topThreeCScorePlayers = []
 
     //Filtering: available etc.
@@ -8463,22 +8464,16 @@ function getTopThreeCaptainPicks(playerData, fixtureData) {
 
     for (const key in playerData) {
         const player = playerData[key]
-
-        console.log(fixtureData)
-        console.log(player.short_name)
-        console.log(nextGame(fixtureData, player.short_name))
         
         if (topThreeCScorePlayers.length !== 3) {
             //Calculation of cScore
-            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name, currentGameweekID)[0][2] / 5))
             topThreeCScorePlayers.push([player, cScore])
         }
         else {
             //Calculation of cScore
-            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name, currentGameweekID)[0][2] / 5))
             const pickWithMinScore = getMinCaptainPick(topThreeCScorePlayers);
-
-            console.log(player.web_name, cScore, pickWithMinScore)
 
             if (cScore > pickWithMinScore[1]) {
                 const index = topThreeCScorePlayers.findIndex((element, index) => {
@@ -8496,11 +8491,11 @@ function getTopThreeCaptainPicks(playerData, fixtureData) {
     return topThreeCScorePlayers.sort((a, b) => (a[1] > b[1]) ? -1 : 1);
 }
 
-function nextGame(fixData, teamNameShort) {
+function nextGame(fixData, teamNameShort, currentGameweekID) {
     let fixList = []
     for (const fixId in fixData) {
         const fix = fixData[fixId]
-        if (!fix['finished'] && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
+        if (( fix['gameweek'] === currentGameweekID ) && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
             if ( fix['short_name_h'] === teamNameShort ) {
                 fixList.push([fix['gameweek'], fix['short_name_a'], fix['team_h_difficulty'], 'H'])
             }

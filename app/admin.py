@@ -6,3 +6,4 @@ from . import models
 
 admin.site.register(models.Player)
 admin.site.register(models.Fixture)
+admin.site.register(models.Gameweek)

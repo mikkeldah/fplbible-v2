@@ -5,34 +5,46 @@ function Player( props ) {
     return (
         <div id="player-box">
             <div id="player-box-title">
-                <TeamColorLogo teamName={props.short_name} />
+                <TeamColorLogo teamName={props.short_name} diameter={'25px'}/>
                 <h2>{props.web_name} ({props.short_name})</h2>
-                <TeamColorLogo teamName={props.short_name} />
+                <TeamColorLogo teamName={props.short_name} diameter={'25px'}/>
             </div> 
             <div id="player-box-labels-and-values-container">
-                <div id="player-box-labels">
-                    <p>Price:</p>
-                    <p>Total points:</p>
-                    <p>Minutes:</p>
-                    <p>Points per Game:</p>
-                    <p>Points per Price:</p>
-                    <p>Points per Price per Game:</p>
+                <div className="player-box-labels-and-values" style={{backgroundColor: 'rgb(216, 215, 215)'}}>
+                    <p>Price: </p><p>£ {props.price.toFixed(1)}</p>
+                </div>
+                <div className="player-box-labels-and-values">
+                    <p>Total points:</p><p>{props.total_points}</p>
+                </div>
+                <div className="player-box-labels-and-values" style={{backgroundColor: 'rgb(216, 215, 215)'}}>
+                    <p>Minutes:</p><p>{props.minutes}</p>
+                </div>
+                <div className="player-box-labels-and-values">
+                    <p>Points per Game:</p><p>{props.points_per_game.toFixed(1)}</p>
+                </div>
+                <div className="player-box-labels-and-values" style={{backgroundColor: 'rgb(216, 215, 215)'}}>
+                    <p>Points per Price:</p> <p>{props.points_per_price.toFixed(1)}</p>
+                </div>
+                <div className="player-box-labels-and-values">
+                    <p>Points per Price per Game:</p><p>{props.points_per_price_per_game.toFixed(2)}</p>
                 </div>
                 <div id="player-box-values">
-                    <p>{props.price.toFixed(1)}</p>
-                    <p>{props.total_points}</p>
-                    <p>{props.minutes}</p>
-                    <p>{props.points_per_game.toFixed(1)}</p>
-                    <p>{props.points_per_price.toFixed(1)}</p>
-                    <p>{props.points_per_price_per_game.toFixed(2)}</p>
                 </div>
             </div>
             <h3>Upcoming fixtures</h3>
             <div id="player-show-fixtures-short">
                 {props.nextFiveFix.map((fixture) => {
-                    const [ gw, opponent, diffuculty, location ] = fixture;
+                    const [ gw, opponent, difficulty, location ] = fixture;
                     return (
-                        <Fixture gw={gw} opponent={opponent} location={location} difficulty={diffuculty}/>
+                        <Fixture 
+                            fontSize={'11px'}
+                            padding={'3px'}
+                            gw={gw} 
+                            opponent={opponent} 
+                            location={location} 
+                            difficulty={difficulty}
+                            showGW={true}
+                        />
                     )
                 })}
             </div>

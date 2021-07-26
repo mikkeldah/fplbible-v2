@@ -1,8 +1,7 @@
+from django.db.models import query
 from django.shortcuts import render
-from .models import Player
-from .models import Fixture
-from .serializers import PlayerSerializer
-from .serializers import FixtureSerializer
+from .models import Player, Fixture, Gameweek
+from .serializers import PlayerSerializer, FixtureSerializer, GameweekSerializer
 
 from rest_framework import generics
 
@@ -14,3 +13,7 @@ class PlayerCreate(generics.ListCreateAPIView):
 class FixtureCreate(generics.ListCreateAPIView):
     queryset = Fixture.objects.all()
     serializer_class = FixtureSerializer
+
+class GameweekCreate(generics.ListCreateAPIView):
+    queryset = Gameweek.objects.all()
+    serializer_class = GameweekSerializer
