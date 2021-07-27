@@ -10,8 +10,8 @@ function Counter( props ) {
     return (
         <div id="counter-container">
             <div id="counter">
-                <h4>GW{props.gameweek.id} Transfer Deadline</h4>
-                <Countdown date={new Date(props.gameweek.deadline_time)}>
+                <h4>GW{props.gameweek ? props.gameweek.id : ""} Transfer Deadline</h4>
+                <Countdown date={new Date(props.gameweek ? props.gameweek.deadline_time : "")}>
                     <Completionist/>
                 </Countdown>
             </div>

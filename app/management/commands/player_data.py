@@ -18,47 +18,14 @@ class Command(BaseCommand):
             print("Could not fetch from FPL API")
         json = response.json()
 
-        print(json.keys())
-
         elements_df = pd.DataFrame(json['elements'])
-        # events_df = pd.DataFrame(json['events'])
-        # gs_df = pd.DataFrame(json['game_settings'])
-        # phases_df = pd.DataFrame(json['phases'])
+        
         teams_df = pd.DataFrame(json['teams'])
-        # tot_df = pd.DataFrame(json['total_players'])
-        # element_stats_df = pd.DataFrame(json['element_stats'])
-        # element_types_df = pd.DataFrame(json['element_types'])
 
-        # print(elements_df.head())
-        # print(elements_df.columns)
-
-        # IMPORTANT: shows GW Deadline and finished time
-        # print(events_df[['name', 'deadline_time', 'finished', 'data_checked','deadline_time_epoch', 'deadline_time_game_offset']].head(30))
-        # print(events_df.columns)
-
-        # print(gs_df.head())
-        # print(gs_df.columns)
-
-        # print(phases_df.to_string())
-        # print(phases_df.columns)
-
-        print(teams_df.head())
-
-        # print(tot_df.head())
-        # print(tot_df.columns)
-
-        # print(element_stats_df.head())
-        # print(element_stats_df.columns)
-
-        # print(element_types_df.head())
-        # print(element_types_df.columns)
-
-        elements_df = elements_df[elements_df['minutes'] > 0]
+        # elements_df = elements_df[elements_df['minutes'] > 0]
         teams_df = teams_df.rename(columns={'code': 'team_code'})
 
         elements_df = pd.merge(elements_df, teams_df, on="team_code")
-
-        print(elements_df.columns)
         
         elements_df['full_name'] = elements_df['first_name']+" "+elements_df['second_name']
         elements_df['price'] = elements_df['now_cost'] / 10
@@ -77,7 +44,6 @@ class Command(BaseCommand):
         elements_df['takes_freekicks'] = elements_df['direct_freekicks_order'].map(lambda x: True if x == 1.0 else False)
         elements_df['takes_penalties'] = elements_df['penalties_order'].map(lambda x: True if x == 1.0 else False)
         
-        print(elements_df['short_name'])
 
         players_df = elements_df[['id_x', 'full_name', 'web_name', 'position', 'name', 'short_name', 'price', 'total_points', 'minutes',
         'points_per_minute', 'points_per_price', 'points_per_game', 'points_per_price_per_minute', 'points_per_price_per_game','status', 'takes_corners', 'takes_freekicks', 'takes_penalties', 'form_x','ict_index']]

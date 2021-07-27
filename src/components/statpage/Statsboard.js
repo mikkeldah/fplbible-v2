@@ -14,10 +14,11 @@ function Statsboard( props ) {
         props.handlePageSwitch('Plot Builder');
     })
 
+    //Fetching playerdata
     const [ data, setData ] = useState([]);
 
     useEffect(() => {
-        fetch('https://fplbible.herokuapp.com/api/app/players')
+        fetch(props.apiURL+'players')
         .then(res => res.json())
         .then(data => {
             setData(data);

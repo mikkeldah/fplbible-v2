@@ -22,8 +22,8 @@ function CaptainPicks( props ) {
                 setSelected={(newSelection) => { setSelected(newSelection)}}
                 selected={selected}
             />
-            {selected === 'GENERAL' && <GeneralCaptainPicks gameweek={props.gameweek}/>}
-            {selected === 'CUSTOM' && <CustomizedCaptainPicks gameweek={props.gameweek}/>}
+            {selected === 'GENERAL' && <GeneralCaptainPicks gameweek={props.gameweek} apiURL={props.apiURL}/>}
+            {selected === 'CUSTOM' && <CustomizedCaptainPicks gameweek={props.gameweek} apiURL={props.apiURL}/>}
         </div>
     )
 }

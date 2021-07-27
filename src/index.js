@@ -7,6 +7,7 @@ import './static/css/players-page.css';
 import './static/css/statsboard.css';
 import './static/css/recommender.css';
 import './static/css/captain-picks.css';
+import './static/css/contactpage.css';
 
 
 ReactDOM.render(
