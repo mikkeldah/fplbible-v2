@@ -91,7 +91,7 @@ function Customized( props ) {
                 {/* Added players start */}
                 <div id="captain-picks-custom-added-players-wrapper">
                     <div id="captain-picks-custom-insert-team-added-players-container">
-                        {selectedPlayers.length === 0 && <p style={{margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Add players to see the best captain picks for GWX</p>}
+                        {selectedPlayers.length === 0 && <p style={{margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Add players to see the best captain picks for GW{props.gameweek.id}</p>}
                         {selectedPlayers.map((player) => {
                             return (
                                 <div className="captain-picks-custom-insert-team-added-player-box">
@@ -111,8 +111,8 @@ function Customized( props ) {
                 {/* Added players end */}
             </div>
             <div id="captain-picks-custom-results-container">
-                {selectedPlayers.length === 0 && <p style={{ margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Best captain picks for GWX will appear here</p>}
-                {getTopThreeCaptainPicks(selectedPlayers, fixtureData).map((instance, i) => {
+                {selectedPlayers.length === 0 && <p style={{ margin: '15px', textAlign: 'center', fontSize: '1.2rem'}}>Best captain picks for GW{props.gameweek.id} will appear here</p>}
+                {getTopThreeCaptainPicks(selectedPlayers, fixtureData, props.gameweek.id).map((instance, i) => {
                     const [ player, cScore ] = instance;
                     return (
                         <div>
@@ -124,7 +124,7 @@ function Customized( props ) {
                                 price={player.price}
                                 pointsPerGame={player.points_per_game}
                                 cScore={cScore.toFixed(2)}
-                                nextGame={nextGame(fixtureData, player.short_name)}
+                                nextGames={nextGameweekGames(fixtureData, player.short_name, props.gameweek.id)}
                             />  
                         </div>
                     )
@@ -135,11 +135,11 @@ function Customized( props ) {
 }
 
 
-function getTopThreeCaptainPicks(playerData, fixtureData) {
+function getTopThreeCaptainPicks(playerData, fixtureData, currentGameweekID) {
     let topThreeCScorePlayers = []
 
     //Filtering: available etc.
-    //
+    playerData = playerData.filter(player => player.status === 'Available')
 
     const topPPPPG = getTopAttributeScore(playerData, 'points_per_game')
     const topICT = getTopAttributeScore(playerData, 'ict_index')
@@ -149,12 +149,12 @@ function getTopThreeCaptainPicks(playerData, fixtureData) {
         
         if (topThreeCScorePlayers.length !== 3) {
             //Calculation of cScore
-            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + nextGameweekGamesScore(nextGameweekGames(fixtureData, player.short_name, currentGameweekID))
             topThreeCScorePlayers.push([player, cScore])
         }
         else {
             //Calculation of cScore
-            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + (1 - (nextGame(fixtureData, player.short_name)[0][2] / 5))
+            const cScore = (player.points_per_game / topPPPPG) + (player.ict_index / topICT) + nextGameweekGamesScore(nextGameweekGames(fixtureData, player.short_name, currentGameweekID))
             const pickWithMinScore = getMinCaptainPick(topThreeCScorePlayers);
 
             if (cScore > pickWithMinScore[1]) {
@@ -173,24 +173,37 @@ function getTopThreeCaptainPicks(playerData, fixtureData) {
     return topThreeCScorePlayers.sort((a, b) => (a[1] > b[1]) ? -1 : 1);
 }
 
-function nextGame(fixData, teamNameShort) {
+function nextGameweekGames(fixData, teamNameShort, currentGameweekID) {
     let fixList = []
     for (const fixId in fixData) {
         const fix = fixData[fixId]
-        if (!fix['finished'] && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
+        if (( fix['gameweek'] === currentGameweekID ) && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
             if ( fix['short_name_h'] === teamNameShort ) {
                 fixList.push([fix['gameweek'], fix['short_name_a'], fix['team_h_difficulty'], 'H'])
             }
             if ( fix['short_name_a'] === teamNameShort ) {
                 fixList.push([fix['gameweek'], fix['short_name_h'], fix['team_a_difficulty'], 'A'])
             }
-            if (fixList.length === 1) {
-                return fixList;
-            }
         }
     }
 
     return fixList;
+}
+
+function nextGameweekGamesScore(fixList) {
+    if (fixList.length === 0) {
+        return -10;
+    }
+
+    let score = 0;
+
+    for (const key in fixList) {
+        const fix = fixList[key] 
+        const fixDifficulty = fix[2]
+        score = score + (1 - (fixDifficulty / 5))
+    }
+
+    return score;
 }
 
 function getMinCaptainPick(topThree) {

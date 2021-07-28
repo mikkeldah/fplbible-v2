@@ -12,7 +12,7 @@ class PlayerSerializer(serializers.ModelSerializer):
 class FixtureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fixture
-        fields = ('gameweek', 'finished', 'name_h', 'short_name_h', 'team_h_difficulty', 'name_a', 'short_name_a', 'team_a_difficulty')
+        fields = ('id', 'gameweek', 'finished', 'name_h', 'short_name_h', 'team_h_difficulty', 'name_a', 'short_name_a', 'team_a_difficulty')
     
 class GameweekSerializer(serializers.ModelSerializer):
     class Meta:

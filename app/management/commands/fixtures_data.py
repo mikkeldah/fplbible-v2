@@ -23,7 +23,8 @@ class Command(BaseCommand):
         teams_json = response_teams.json()
 
         fixtures_df = pd.DataFrame(fix_json)
-        fixtures_df = fixtures_df[["event", "finished", "team_a", "team_h", "team_a_difficulty", "team_h_difficulty"]]
+        fixtures_df = fixtures_df[["id", "event", "finished", "team_a", "team_h", "team_a_difficulty", "team_h_difficulty"]]
+        fixtures_df.rename(columns={'id': 'fixture_id'}, inplace=True)
         teams_df = pd.DataFrame(teams_json['teams'])
         teams_df = teams_df[['id', 'name', 'short_name']]
 
@@ -35,16 +36,14 @@ class Command(BaseCommand):
 
         fixtures_df.rename(columns={'name': 'name_h', 'short_name': 'short_name_h', 'event': 'gameweek'}, inplace=True)
 
-        print(fixtures_df.head(10))
+        fixtures_df = fixtures_df[["fixture_id","gameweek", "finished", "name_h", "short_name_h", "team_h_difficulty", "name_a", "short_name_a", "team_a_difficulty"]]
 
-        fixtures_df = fixtures_df[["gameweek", "finished", "name_h", "short_name_h", "team_h_difficulty", "name_a", "short_name_a", "team_a_difficulty"]]
-
-        print(fixtures_df.head(10))
-        print(teams_df.head(10))
+        fixtures_df.rename(columns={'fixture_id': 'id'}, inplace=True)
 
         for index, row in fixtures_df.iterrows():
 
             fixture = Fixture(
+                id = row['id'],
                 gameweek = row['gameweek'],
                 finished = row['finished'],
                 name_h = row['name_h'],

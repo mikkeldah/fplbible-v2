@@ -82,7 +82,7 @@
     display: flex;
     align-items: center;
     margin: 10px 0;
-    margin-top: 23px;
+    margin-top: 28px;
 }
 
 .captain-picks-general-captain-pick-title-container h2 {
@@ -91,7 +91,6 @@
 
 .captain-picks-general-captain-pick-info-container {
     display: flex;
-    align-items: center;
     width: 70%;
     justify-content: space-between;
     margin: 8px 0;

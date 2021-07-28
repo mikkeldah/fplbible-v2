@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-d0bq)c9(xn-hp9e&f2=h=-cn0ueee1156e_0n$#t^t8uhcic!f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['fplbible.herokuapp.com', '127.0.0.1', 'fplbible.com']
 

@@ -18,20 +18,27 @@ function CaptainPick( props ) {
                 <p>Points per Game: </p>
                 <p>{props.pointsPerGame}</p>
             </div>
-            <div className="captain-picks-general-captain-pick-info-container">
+            {/* <div className="captain-picks-general-captain-pick-info-container">
                 <p>cScore: </p>
                 <p>{props.cScore}</p>
-            </div>
+            </div> */}
             <div className="captain-picks-general-captain-pick-info-container">
-                <p>GW{props.gameweek.id} opponent: </p>
-                <Fixture 
-                    opponent={props.nextGame[0][1]} 
-                    difficulty={props.nextGame[0][2]}
-                    location={props.nextGame[0][3]}
-                    padding={'4px'}
-                    showGW={false}
-                    fontSize={'0.85rem'}
-                />
+                <p style={{width: '70%'}}>GW{props.gameweek.id} opponent(s): </p>
+                <div style={{ display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
+                {props.nextGames.map((fixture) => {
+                    return (
+                        <Fixture 
+                            opponent={fixture[1]} 
+                            difficulty={fixture[2]}
+                            location={fixture[3]}
+                            padding={'4px'}
+                            showGW={false}
+                            fontSize={'0.85rem'}
+                            marginBottom={'2px'}
+                        />
+                    )
+                })}
+                </div>
             </div>
         </div>
     )

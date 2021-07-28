@@ -33,6 +33,7 @@ class Player(models.Model):
         return self.web_name   
 
 class Fixture(models.Model):
+    id = models.IntegerField(primary_key=True)
     gameweek = models.IntegerField(null=True)
     finished = models.BooleanField(null=True)
     name_h = models.CharField(max_length=100, null=True)

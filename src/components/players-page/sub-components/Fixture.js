@@ -1,7 +1,7 @@
 function Fixture( props ) {
     const backgroundColor = getBackgroundColor(props.difficulty)
     return (
-        <div className="fixture-box-outer">
+        <div style={{marginBottom: props.marginBottom}} className="fixture-box-outer">
             { props.showGW && <h4>GW {props.gw}</h4>}
             <div style={{ backgroundColor: backgroundColor}} className="fixture-box">
                 <p style={{ fontSize: props.fontSize, padding: props.padding}}>{props.opponent}({props.location})</p>

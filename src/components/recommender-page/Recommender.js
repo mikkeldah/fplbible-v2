@@ -83,7 +83,7 @@ function Recommender( props ) {
             <CustomModal 
                 isOpen={modalIsOpen}
                 onRequestClose={errorDismissed}
-                text={'Error: Could not find any player or group of players matching the input. Are you sure that you have entered the correct values?'}
+                text={'Could not find any player or group of players matching the input. Are you sure that you have entered the correct values?'}
             />
             <RecommenderInput sendDataToParent={sendDataToParent} searchButtonClicked={searchButtonClicked}/>
             <div id="recommender-results-main">
@@ -168,6 +168,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
     playerData = playerData.filter(player => player.minutes > 0)
     playerData = playerData.filter(player => player.status === 'Available')
     playerData = playerData.filter(player => !notInclude.includes(player.team))
+    playerData = playerData.filter(player => nextGameweekGames(fixtureData, player.short_name, currentGameweekID).length > 0)
 
     const playerDataGKP = playerData.filter(player => player.position === 'GKP')
     const playerDataDEF = playerData.filter(player => player.position === 'DEF')
@@ -371,6 +372,23 @@ function avgDifficultyOfFixList(fixList) {
     }
 
     return counter / denominator;
+}
+
+function nextGameweekGames(fixData, teamNameShort, currentGameweekID) {
+    let fixList = []
+    for (const fixId in fixData) {
+        const fix = fixData[fixId]
+        if (( fix['gameweek'] === currentGameweekID ) && ( fix['short_name_h'] === teamNameShort || fix['short_name_a'] === teamNameShort ) ) {
+            if ( fix['short_name_h'] === teamNameShort ) {
+                fixList.push([fix['gameweek'], fix['short_name_a'], fix['team_h_difficulty'], 'H'])
+            }
+            if ( fix['short_name_a'] === teamNameShort ) {
+                fixList.push([fix['gameweek'], fix['short_name_h'], fix['team_a_difficulty'], 'A'])
+            }
+        }
+    }
+
+    return fixList;
 }
 
 function getTopAttributeScore(data, att) {
