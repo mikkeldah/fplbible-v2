@@ -3,8 +3,9 @@
 /* MAIN START */
 
 #home-main {
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 
 .home-options-row {
@@ -16,21 +17,41 @@
 .home-option-container {
     color: #38003c;
     background-color: white;
-    width: 250px;
-    height: 250px;
+    width: 450px;
+    height: 350px;
     margin-top: 35px;
     margin-bottom: 35px;
-    border-radius: 15px;
-    -moz-box-shadow: 0 0 3px #ccc;
-    -webkit-box-shadow: 0 0 3px #ccc;
-    box-shadow: 0 0 3px #ccc;
+    -moz-box-shadow: 0 0 10px rgb(110, 110, 110);
+    -webkit-box-shadow: 0 0 10px rgb(110, 110, 110);
+    box-shadow: 0 0 10px rgb(110, 110, 110);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 0 7px;    
+    text-align: center;    
     
+}
+
+.home-image-container {
+    height: 60%;
+    width: 100%;
+    border-bottom: 1.3px solid rgb(199, 199, 199);
+}
+
+.home-image-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.home-title-and-desc {
+    height: 50%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.home-title-and-desc-inner {
+    height: 85%;
 }
 
 .home-option-container:hover {
@@ -38,15 +59,23 @@
 
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 500px) {
     #home-main {
         width: 100%;
     }
 
     .home-options-row {
+        width: 100%;
         flex-direction: column;
         align-items: center;
     }
+
+    .home-option-container {
+        width: 85%;
+        height: 300px;
+        margin: 20px auto;
+    }
+
   }
 
 

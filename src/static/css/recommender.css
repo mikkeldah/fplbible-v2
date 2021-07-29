@@ -186,7 +186,6 @@
 .player-pick-card {
     width: 100px;
     height: 80px;
-    border-bottom: 3px solid #00ff85;
     margin: 0 10px;
     display: flex;
     flex-direction: column;

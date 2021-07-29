@@ -45,6 +45,9 @@ function App() {
         setPage(newPage);
     }
 
+    //https://fplbible.herokuapp.com/
+    //http://127.0.0.1:8000/
+
     const [ apiURL, setApiURL ] = useState('https://fplbible.herokuapp.com/api/app/');
     
     const [ backupGameweek, setBackupGameweek ] = useState([
