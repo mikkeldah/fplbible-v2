@@ -6,10 +6,6 @@ function setTheme(primeColor, secondaryColor) {
     const header = document.getElementById('header');
     header.style.backgroundColor = primeColor;
 
-    const counter = document.getElementById('counter');
-    counter.style.border = "4px solid "+primeColor;
-    counter.style.color = primeColor
-
     const menu = document.getElementById('menu');
     menu.style.backgroundColor = secondaryColor;
 

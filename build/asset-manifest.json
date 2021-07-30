@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.0ce148c6.chunk.css",
-    "main.js": "/static/js/main.293e8761.chunk.js",
-    "main.js.map": "/static/js/main.293e8761.chunk.js.map",
+    "main.css": "/static/css/main.98cb59d2.chunk.css",
+    "main.js": "/static/js/main.c09a01a8.chunk.js",
+    "main.js.map": "/static/js/main.c09a01a8.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0e8f911e.js",
     "runtime-main.js.map": "/static/js/runtime-main.0e8f911e.js.map",
     "static/js/2.5854dc2d.chunk.js": "/static/js/2.5854dc2d.chunk.js",
     "static/js/2.5854dc2d.chunk.js.map": "/static/js/2.5854dc2d.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.0ce148c6.chunk.css.map": "/static/css/main.0ce148c6.chunk.css.map",
+    "static/css/main.98cb59d2.chunk.css.map": "/static/css/main.98cb59d2.chunk.css.map",
     "static/js/2.5854dc2d.chunk.js.LICENSE.txt": "/static/js/2.5854dc2d.chunk.js.LICENSE.txt",
     "static/media/captainpicks.c351e8e5.PNG": "/static/media/captainpicks.c351e8e5.PNG",
     "static/media/players.b732e594.PNG": "/static/media/players.b732e594.PNG",
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.0e8f911e.js",
     "static/js/2.5854dc2d.chunk.js",
-    "static/css/main.0ce148c6.chunk.css",
-    "static/js/main.293e8761.chunk.js"
+    "static/css/main.98cb59d2.chunk.css",
+    "static/js/main.c09a01a8.chunk.js"
   ]
 }

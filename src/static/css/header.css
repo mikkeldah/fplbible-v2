@@ -143,49 +143,156 @@ body {
 /*-----------------------------*/
 
 
+/* SUBHEADER START */
 
-/* COUNTER START */
-
-#counter-container {
+#subheader-main {
+    background-color:   #38003c;
     width: 100%;
+    height: 150px;
     display: flex;
-    justify-content: space-evenly;
+
 }
 
-#counter {
-    color: #38003c;
-    font-size: 1.1rem;
-    width: 35%;
-    height: 80px;
-    border: 3px solid #38003c;
-    border-radius: 10px;
+#container-as-big-as-header {
+    height: 50px;
+    width: 100%;
+}
+
+.subheader-item {
+    display: flex;
+    color: white;
+    width: 34%;
+    height: 100%;
+    border-right: 1.5px solid rgb(231, 231, 231);
+    border-top: 1.5px solid rgb(231, 231, 231);
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.subheader-nextitem-container {
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99%;
+    background-color: rgb(122, 91, 122);
+    display: none;
+}
+
+.subheader-nextitem-container:hover {
+    cursor: pointer;
+    background-color: rgb(156, 60, 156)
+
+}
+
+.subheader-arrow-container {
+    width: 10px;
+    height: 10px;
+}
+
+.subheader-arrow-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* TRANSFER DEADLINE CONTAINER START */
+
+#transfer-deadline-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+/* TRANSFER DEADLINE CONTAINER END */
+
+/* TEAMS TO WATCH CONTAINER START */
+
+#teams-to-watch-container {
+    width: 100%;
+} 
+
+#teams-to-watch-fixtures-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 88%;
+}
+
+.fixture-to-watch {
+    color: black;
+    border: 1.5px solid rgb(138, 80, 138);
+    border-radius: 8px;
+    height: 100px;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 8px;
+    
+}
+
+.fixture-to-watch p {
+    font-size: 0.8rem;
+}
+
+/* TEAMS TO WATCH CONTAINER END */
+
+/* DOUBLE GAMEWEEK WATCH CONTAINER START */
+
+#double-gameweek-watch-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-    margin-top: 80px;
-    margin-bottom: 30px;
+}
+
+#double-gameweek-teams-container {
+    width: 50%;
+    height: 100%;
+    
+}
+
+#zero-gameweek-teams-container {
+    width: 50%;
+    height: 100%;
+}
+
+/* DOUBLE GAMEWEEK WATCH CONTAINER END */
+
+
+/* SUBHEADER END */
+
+@media only screen and (max-width: 800px) {
+
+     /* SUBHEADER */
+
+    #subheader-main {
+        width: 300%;
+        transition: 0.2s;
+        
+    }
+
+    .subheader-item {
+       border-right: 0;
+    }
+
+    .subheader-nextitem-container {
+        display: flex;
+    }
 }
 
 @media only screen and (max-width: 650px) {
-    #counter-container {
-        flex-direction: column-reverse;
-        align-items: center;
-    }
-
-    #counter {
-        width: 70%;
-    }
-
-    #counter-container h1 {
-        width: 70%;
-        margin-top: 0;
-        margin-bottom: 30px;
-    }
 
     #remove-on-mobile-size {
         display: none;
     }
+
+    /*  HEADER */
 
     #header {
         justify-content: space-between;
@@ -199,4 +306,6 @@ body {
         margin-right: 10px;
         font-size: 1.6rem;
     }
+
+
 }
