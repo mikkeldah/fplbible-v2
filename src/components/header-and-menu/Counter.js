@@ -14,8 +14,17 @@ function Counter( props ) {
       };
 
     const handleNextItem = () => {
-      const subHeader = document.getElementById('subheader-main');
-      subHeader.style.transform = 'translateX(-33.333333333333%)';
+      const toDisplay = document.getElementById("subheader-item-teamstowatch");
+      toDisplay.style.width = "100%";
+      toDisplay.style.height = "100%";
+      toDisplay.style.visibility = "visible";
+      toDisplay.style.opacity = "1";
+
+      const toHide = document.getElementById("subheader-item-transferdeadline");
+      toHide.style.width = "0";
+      toHide.style.visibility = "hidden";
+      toHide.style.opacity = "0";
+
     }
       
 

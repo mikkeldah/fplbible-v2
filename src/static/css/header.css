@@ -38,7 +38,7 @@ body {
 /* HEADER START */
 
 #header {
-    height: 50px;
+    height: 55px;
     background-color: #38003c;
     display: flex;
     position: fixed;
@@ -146,42 +146,43 @@ body {
 /* SUBHEADER START */
 
 #subheader-main {
-    background-color:   #38003c;
+    background-color:  #38003c;
     width: 100%;
-    height: 150px;
+    height: 170px;
     display: flex;
+    justify-content: space-evenly;
 
 }
 
 #container-as-big-as-header {
-    height: 50px;
+    height: 55px;
     width: 100%;
 }
 
 .subheader-item {
     display: flex;
     color: white;
-    width: 34%;
-    height: 100%;
-    border-right: 1.5px solid rgb(231, 231, 231);
-    border-top: 1.5px solid rgb(231, 231, 231);
+    width: 32.5%;
+    height: 95%;
+    background-color: rgb(29, 0, 29);
+    /* border-top: 2px solid rgb(138, 80, 138); */
     -webkit-transition: 0.3s;
     transition: 0.3s;
 }
 
 .subheader-nextitem-container {
-    width: 25px;
+    width: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 99%;
-    background-color: rgb(122, 91, 122);
+    height: 100%;
+    background-color: rgb(153, 112, 153);
     display: none;
 }
 
 .subheader-nextitem-container:hover {
     cursor: pointer;
-    background-color: rgb(156, 60, 156)
+    box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 
 }
 
@@ -253,8 +254,15 @@ body {
 
 #double-gameweek-teams-container {
     width: 50%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     
+}
+
+.double-gameweek-team-container {
+    width: 60%;
+    height: 60px;
+    margin: 3px 0;
 }
 
 #zero-gameweek-teams-container {
@@ -267,15 +275,29 @@ body {
 
 /* SUBHEADER END */
 
+/* ------------------ */
+
+/* TITLE AND DESCRIPTION START */
+
+#title-and-description-container {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#title-and-description-container p{
+    width: 30%;
+    text-align: center;
+}
+
+/* TITLE AND DESCRIPTION END */
+
 @media only screen and (max-width: 800px) {
 
      /* SUBHEADER */
-
-    #subheader-main {
-        width: 300%;
-        transition: 0.2s;
-        
-    }
 
     .subheader-item {
        border-right: 0;
@@ -284,6 +306,27 @@ body {
     .subheader-nextitem-container {
         display: flex;
     }
+
+    #subheader-item-transferdeadline {
+        width: 100%;
+        height: 100%;
+        
+    }
+
+    #subheader-item-teamstowatch {
+        visibility: hidden;
+        opacity: 0;
+        width: 0;
+        
+    }
+
+    #subheader-item-double-gw {
+        visibility: hidden;
+        opacity: 0;
+        /* transition: visibility 0.3s, opacity 0.5s linear; */
+        width: 0;
+    }
+    
 }
 
 @media only screen and (max-width: 650px) {

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import Header from './components/header-and-menu/Header';
 import DropInMenu from './components/header-and-menu/DropInMenu';
 import SubHeader from './components/header-and-menu/SubHeader';
+import PageTitleAndDesc from './components/header-and-menu/PageTitleAndDesc';
 import Home from './components/homepage/Home';
 import Statsboard from './components/statpage/Statsboard';
 import Recommender from './components/recommender-page/Recommender';
@@ -407,7 +408,7 @@ function App() {
         }])
 
     //Fetching gameweek data
-    const [ gameweekData, setGameweekData ] = useState([])
+    const [ gameweekData, setGameweekData ] = useState(rawGameweekData)
     
     useEffect(() => {
         fetch(apiURL+'gameweeks')
@@ -426,6 +427,7 @@ function App() {
                 <Header page={page} dropInMenuHidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <DropInMenu hidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <SubHeader gameweek={gameweekData.length > 0 ? getCurrentGameweek(gameweekData) : backupGameweek} apiURL={apiURL}/>
+                <PageTitleAndDesc page={page} />
                 <Switch>
                     <Route exact path="/">
                         <Home handlePageSwitch={handlePageSwitch}/>

@@ -4,13 +4,29 @@ import Fixture from '../players-page/sub-components/Fixture';
 function TeamsToWatch( props ) {
 
     const handleNextItem1 = () => {
-        const subHeader = document.getElementById('subheader-main');
-        subHeader.style.transform = 'translateX(0)';
+        const toDisplay = document.getElementById("subheader-item-transferdeadline");
+        toDisplay.style.width = "100%";
+        toDisplay.style.visibility = "visible";
+        toDisplay.style.opacity = "1";
+
+        const toHide = document.getElementById("subheader-item-teamstowatch");
+        toHide.style.width = "0";
+        toHide.style.visibility = "hidden";
+        toHide.style.opacity = "0";
     }
 
     const handleNextItem2 = () => {
-        const subHeader = document.getElementById('subheader-main');
-        subHeader.style.transform = 'translateX(-66.66666666666666%)';
+        const toHide = document.getElementById("subheader-item-teamstowatch");
+        toHide.style.width = "0";
+        toHide.style.visibility = "hidden";
+        toHide.style.opacity = "0";
+
+        const toDisplay = document.getElementById("subheader-item-double-gw");
+        toDisplay.style.width = "100%";
+        toDisplay.style.height = "100%";
+        toDisplay.style.visibility = "visible";
+        toDisplay.style.opacity = "1";
+
       }
 
     return (

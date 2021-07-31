@@ -6,6 +6,9 @@ function setTheme(primeColor, secondaryColor) {
     const header = document.getElementById('header');
     header.style.backgroundColor = primeColor;
 
+    const subHeader = document.getElementById('subheader-main');
+    subHeader.style.backgroundColor = primeColor;
+
     const menu = document.getElementById('menu');
     menu.style.backgroundColor = secondaryColor;
 

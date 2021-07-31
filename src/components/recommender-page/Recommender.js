@@ -401,10 +401,6 @@ function getTopAttributeScore(data, att) {
         }
     }
 
-    if (topScore === 0) {
-        throw new Error("something went wrong with the top score");
-    }
-
     return topScore;
 }
 
