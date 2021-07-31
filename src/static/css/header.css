@@ -10,6 +10,7 @@
 
 html {
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 body {
@@ -38,7 +39,7 @@ body {
 /* HEADER START */
 
 #header {
-    height: 55px;
+    height: 50px;
     background-color: #38003c;
     display: flex;
     position: fixed;
@@ -107,7 +108,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #4e0353;
+    background-color: rgb(29, 0, 29);
     -webkit-transition: 0.3s;
     transition: 0.3s;
     transform: translateX(-251px);
@@ -123,7 +124,7 @@ body {
     height: 50px;
     display: flex;
     align-items: center;
-    border-bottom: 1.5px solid rgb(233, 233, 233);
+    border-bottom: 1.5px solid rgb(138, 80, 138);
     color: #ffffff;
 }
 
@@ -151,11 +152,12 @@ body {
     height: 170px;
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 30px;
 
 }
 
 #container-as-big-as-header {
-    height: 55px;
+    height: 50px;
     width: 100%;
 }
 
@@ -171,24 +173,28 @@ body {
 }
 
 .subheader-nextitem-container {
-    width: 12px;
+    width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-color: rgb(153, 112, 153);
     display: none;
 }
 
-.subheader-nextitem-container:hover {
+
+
+.subheader-arrow-container {
+    width: 13px;
+    height: 13px;
+    padding: 2px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+}
+
+.subheader-arrow-container:hover {
     cursor: pointer;
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
 
-}
-
-.subheader-arrow-container {
-    width: 10px;
-    height: 10px;
 }
 
 .subheader-arrow-container img {

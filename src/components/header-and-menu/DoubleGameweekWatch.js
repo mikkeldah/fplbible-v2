@@ -87,7 +87,8 @@ function DoubleGameweekWatch( props ) {
                     </div>
                 </div>
             </div>
-            <NextItemContainer display="none" rotation="90"/>
+            <div className="subheader-nextitem-container">
+            </div>
         </div>
     )
 }

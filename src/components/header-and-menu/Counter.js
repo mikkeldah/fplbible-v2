@@ -30,7 +30,8 @@ function Counter( props ) {
 
     return (
         <div id="subheader-item-transferdeadline" className="subheader-item">
-            <NextItemContainer display="none"/>
+            <div className="subheader-nextitem-container">
+            </div>
             <div id="transfer-deadline-container">
               <h4 style={{textAlign: 'center'}}>GW{props.gameweek ? props.gameweek.id : ""} Transfer Deadline</h4>
               <Countdown 
