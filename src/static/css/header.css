@@ -9,13 +9,14 @@
 }
 
 html {
-    overflow-y: scroll;
     overflow-x: hidden;
 }
 
 body {
     /*background-color: #dddddd60;*/
     background-color: rgb(231, 231, 231);
+    overflow: hidden;
+    overflow-x: hidden;
 }
 
 #shadow-div {
@@ -302,6 +303,11 @@ body {
 /* TITLE AND DESCRIPTION END */
 
 @media only screen and (max-width: 800px) {
+
+    body {
+        overflow: hidden !important;
+        overflow-x: hidden !important;
+    }
 
      /* SUBHEADER */
 
