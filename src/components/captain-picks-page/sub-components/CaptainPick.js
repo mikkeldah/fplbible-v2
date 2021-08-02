@@ -18,10 +18,6 @@ function CaptainPick( props ) {
                 <p>Points per Game: </p>
                 <p>{props.pointsPerGame}</p>
             </div>
-            {/* <div className="captain-picks-general-captain-pick-info-container">
-                <p>cScore: </p>
-                <p>{props.cScore}</p>
-            </div> */}
             <div className="captain-picks-general-captain-pick-info-container">
                 <p style={{width: '70%'}}>GW{props.gameweek.id} opponent(s): </p>
                 <div style={{ display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>

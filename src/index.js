@@ -9,7 +9,6 @@ import './static/css/recommender.css';
 import './static/css/captain-picks.css';
 import './static/css/contactpage.css';
 
-
 ReactDOM.render(
     <React.StrictMode>
         <App/>

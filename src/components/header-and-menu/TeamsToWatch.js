@@ -86,8 +86,6 @@ function getTopThreeGamesWithBIggestDifficultyDifference(fixtureData, gameweekID
         }
     }).slice(0, 3)
 
-    console.log(fixtureData)
-
     for (const key in fixtureData) {
         const fixture = fixtureData[key]
         if (fixture.team_a_difficulty > fixture.team_h_difficulty) {
@@ -99,8 +97,6 @@ function getTopThreeGamesWithBIggestDifficultyDifference(fixtureData, gameweekID
             topThreeGames.push([fixture.name_a, fixture.short_name_a, fixture.team_a_difficulty, fixture.name_h, fixture.short_name_h, fixture.team_h_difficulty, 'H', 'A'])
         }
     }
-    
-    console.log(topThreeGames)
 
     return topThreeGames;
 }

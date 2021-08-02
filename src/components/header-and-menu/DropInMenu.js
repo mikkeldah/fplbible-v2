@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 function DropInMenu( props ) {
 
-    
     /* Hides the menu and hides shadow when link clicked */ 
     const hideMenuOnClick = () => {
         const menu = document.getElementById('menu');

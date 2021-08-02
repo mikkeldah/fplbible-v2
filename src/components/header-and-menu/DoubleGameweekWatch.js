@@ -112,8 +112,6 @@ function getDoubleGameweekTeams( fixtureData, gameweekID) {
         }
     }
 
-    console.log(teams)
-
     return teams;
 }
 
