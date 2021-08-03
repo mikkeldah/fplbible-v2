@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactGA from "react-ga";
 import { 
-    BrowserRouter as Router,
+    BrowserRouter as BRouter,
     Switch, 
     Route, 
-} from "react-router-dom";
+} from "react-router-dom"; 
+import { createBrowserHistory } from 'history';
 import { useEffect, useState } from 'react';
 import Header from './components/header-and-menu/Header';
 import DropInMenu from './components/header-and-menu/DropInMenu';
@@ -16,6 +17,12 @@ import Recommender from './components/recommender-page/Recommender';
 import Players from './components/players-page/Players';
 import CaptainPicks from './components/captain-picks-page/CaptainPicks';
 import Contact from './components/contact-page/Contact';
+
+ReactGA.initialize('G-NQPFWG90VE');
+const browserHistory = createBrowserHistory();
+browserHistory.listen((location, action) => {
+    ReactGA.pageview(location.pathname + location.search);
+})
 
 function App() {
 
@@ -40,9 +47,7 @@ function App() {
 
     }
 
-    useEffect(() => {
-        ReactGA.initialize('G-NQPFWG90VE')
-
+    useEffect(() => { 
         ReactGA.pageview(window.location.pathname + window.location.search)
     }, [])
 
@@ -87,7 +92,7 @@ function App() {
 
     return (
         <React.Fragment>
-            <Router>
+            <BRouter>
                 <Header page={page} dropInMenuHidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <DropInMenu hidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <SubHeader gameweek={gameweekData.length > 0 ? getCurrentGameweek(gameweekData) : backupGameweek} apiURL={apiURL}/>
@@ -132,7 +137,7 @@ function App() {
                         <div id="shadow-div" onClick={hideMenuOnClick}></div>
                     </Route>
                 </Switch>
-            </Router>
+            </BRouter>
         </React.Fragment>
     )
 };
