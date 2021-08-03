@@ -18,7 +18,7 @@ import Players from './components/players-page/Players';
 import CaptainPicks from './components/captain-picks-page/CaptainPicks';
 import Contact from './components/contact-page/Contact';
 
-ReactGA.initialize('G-NQPFWG90VE');
+ReactGA.initialize('G-FHM7FVGK44');
 const browserHistory = createBrowserHistory();
 browserHistory.listen((location, action) => {
     ReactGA.pageview(location.pathname + location.search);
