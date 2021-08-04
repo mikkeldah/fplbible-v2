@@ -15,7 +15,6 @@ function Contact( props ) {
 
     return (
         <div id="contact-main">
-            <h2 style={{margin: '10px 0'}}>Contact</h2>
             <p style={{textAlign: 'center'}}>For inquiries send an email to admin@fplbible.com</p>
         </div>
     )

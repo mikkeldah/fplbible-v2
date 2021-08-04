@@ -105,7 +105,9 @@
 }
 
 #recommender-button-container {
-    
+    flex-direction: row;
+    justify-content: space-around;
+
 }
 
 /* INPUT END */

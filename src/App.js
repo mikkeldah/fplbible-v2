@@ -3,7 +3,6 @@ import {
     BrowserRouter as BRouter,
     Switch, 
     Route, 
-    useLocation
 } from "react-router-dom"; 
 import { useEffect, useState } from 'react';
 import Header from './components/header-and-menu/Header';
