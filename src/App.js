@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactGA from "react-ga";
 import { 
     BrowserRouter as BRouter,
     Switch, 
     Route, 
+    useLocation
 } from "react-router-dom"; 
-import { createBrowserHistory } from 'history';
 import { useEffect, useState } from 'react';
 import Header from './components/header-and-menu/Header';
 import DropInMenu from './components/header-and-menu/DropInMenu';
@@ -18,13 +17,19 @@ import Players from './components/players-page/Players';
 import CaptainPicks from './components/captain-picks-page/CaptainPicks';
 import Contact from './components/contact-page/Contact';
 
-ReactGA.initialize('G-FHM7FVGK44');
-const browserHistory = createBrowserHistory();
-browserHistory.listen((location, action) => {
-    ReactGA.pageview(location.pathname + location.search);
-})
-
 function App() {
+
+    useEffect(() => {
+        const script1 = document.createElement('script');
+        script1.async = true; 
+        script1.src = "https://www.googletagmanager.com/gtag/js?id=G-FHM7FVGK44";
+
+        const script2 = document.createElement('script');
+        script2.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', 'G-FHM7FVGK44');";
+
+        document.body.appendChild(script1);
+        document.body.appendChild(script2);
+    }, [])
 
     /* Hides the drop in menu when a link or the rest of the page are clicked */
     function hideMenuOnClick() {
@@ -47,9 +52,6 @@ function App() {
 
     }
 
-    useEffect(() => { 
-        ReactGA.pageview(window.location.pathname + window.location.search)
-    }, [])
 
     const [ dropInMenuHidden, setDropInMenuVisibility ] = useState(true);
 

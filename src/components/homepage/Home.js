@@ -44,6 +44,7 @@ function Home( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Home');
+        document.title = "The FPL Bible | Home";
     })
 
     return (

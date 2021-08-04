@@ -10,6 +10,7 @@ function Contact( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Contact');
+        document.title = "The FPL Bible | Contact";
     })
 
     return (

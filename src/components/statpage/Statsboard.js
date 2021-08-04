@@ -12,6 +12,7 @@ function Statsboard( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Plot Builder');
+        document.title = "The FPL Bible | Plot Builder";
     })
 
     //Fetching playerdata

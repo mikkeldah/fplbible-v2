@@ -12,6 +12,7 @@ function CaptainPicks( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Captain Picks');
+        document.title = "The FPL Bible | Captain Picks";
     }, [])
 
     const [ selected, setSelected ] = useState('GENERAL')

@@ -14,6 +14,7 @@ function Recommender( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Recommender');
+        document.title = "The FPL Bible | Recommender";
     })
 
     //Fetching playerdata

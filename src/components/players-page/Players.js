@@ -12,6 +12,7 @@ function Players( props ) {
 
     useEffect(() => {
         props.handlePageSwitch('Players');
+        document.title = "The FPL Bible | Players";
     })
 
     //Fetching playerdata
