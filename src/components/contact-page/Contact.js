@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import setTheme from '../../utils/Themes';
+import ContactForm from './ContactForm';
 
 function Contact( props ) {
 
@@ -15,9 +16,10 @@ function Contact( props ) {
 
     return (
         <div id="contact-main">
-            <p style={{textAlign: 'center'}}>For inquiries send an email to admin@fplbible.com</p>
+            <ContactForm/>
         </div>
     )
+
 }
 
 export default Contact;
