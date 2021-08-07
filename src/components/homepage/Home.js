@@ -21,7 +21,7 @@ const options1 = [
     },
     {
         optionName: "Captain Picks",
-        description: "Get a thorough analysis of the most current captain picks for gameweek 1",
+        description: "Wondering who to pick for captaincy before the next gameweek? This page will provide you with the best picks before each gameweek.",
         link: "/captain-picks",
         img: captainPic
 
