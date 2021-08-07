@@ -33,9 +33,6 @@ function General( props ) {
 
     return (
         <div className="captain-picks-container">
-            <div id="captain-picks-general-title">
-                <h2>Top three captain picks for GW{props.gameweek.id}</h2>
-            </div>
             <div id="captain-picks-general-picks-container">
                 {getTopThreeCaptainPicks(playerData, fixtureData, props.gameweek.id).map((instance, i) => {
                     const [ player, cScore ] = instance;

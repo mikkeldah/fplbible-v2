@@ -56,11 +56,22 @@ function App() {
 
     const [ page, setPage ] = useState('Home')
 
+    const descriptions = {
+        'Home': 'The FPL Bible are created to help you optimize your FPL team. Get started by selection one of the features below.',
+        'Recommender': "This recommender are created with the goal of finding the optimal group of players to fill the empty slots of your team."+
+                       " The algorithm used rank the players based on availability, stats, performance and the difficulty of upcoming fixtures. Recommendations for GW1 are based on stats from the 20/21 season.",
+        'Plot Builder': "If you find your plot clustered and difficult to read, try to filter out players by, for example, increasing minimum minutes played or narrow down the price range."+
+                        " This tool are best suited for wider screens (desktop or tablet). Before GW1 the plots are based on data from the 20/21 season.", 
+        'Captain Picks': "Wondering who to pick for captaincy before the next gameweek? Selecting the right captain are vital for FPL success. This page will provide you with the best picks before each gameweek."
+                        +" The algorithm used rank the players based on availability, stats, performances and the difficulty of the next opponent.",
+        'Players': "Get key information about every player in the FPL player database by using the search-field.",
+        'Contact': "Got any ideas for new features or improvement of existing ones? Or maybe you've found a bug or something that's not working properly on the site? I would love to hear your input, so please, feel free to fill out the contact form and submit, and I will answer as soon as possible."
+    }
+
     const handlePageSwitch = (newPage) => {
         setPage(newPage);
     }
 
-    //https://fplbible.herokuapp.com/
     //http://127.0.0.1:8000/
     //https://www.fplbible.com/
 
@@ -97,7 +108,7 @@ function App() {
                 <Header page={page} dropInMenuHidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <DropInMenu hidden={dropInMenuHidden} dropInMenuVisibilityChange={(newVisibilty) => setDropInMenuVisibility(newVisibilty) }/>
                 <SubHeader gameweek={gameweekData.length > 0 ? getCurrentGameweek(gameweekData) : backupGameweek} apiURL={apiURL}/>
-                <PageTitleAndDesc page={page} />
+                <PageTitleAndDesc page={page} description={descriptions[page]}/>
                 <Switch>
                     <Route exact path="/">
                         <Home handlePageSwitch={handlePageSwitch}/>
