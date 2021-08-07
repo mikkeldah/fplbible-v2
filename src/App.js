@@ -57,7 +57,7 @@ function App() {
     const [ page, setPage ] = useState('Home')
 
     const descriptions = {
-        'Home': 'The FPL Bible are created to help you optimize your FPL team. Get started by selection one of the features below.',
+        'Home': 'The FPL Bible are created to help you optimize your FPL team. Get started by selecting one of the features below.',
         'Recommender': "This recommender are created with the goal of finding the optimal group of players to fill the empty slots of your team."+
                        " The algorithm used rank the players based on availability, stats, performance and the difficulty of upcoming fixtures. Recommendations for GW1 are based on stats from the 20/21 season.",
         'Plot Builder': "If you find your plot clustered and difficult to read, try to filter out players by, for example, increasing minimum minutes played or narrow down the price range."+
