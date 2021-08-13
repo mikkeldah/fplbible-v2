@@ -78,4 +78,5 @@ class Command(BaseCommand):
             takes_corners=takes_corners, takes_freekicks=takes_freekicks, takes_penalties=takes_penalties, form=form, ict_index=ict_index)
 
             player.save()
+
     
