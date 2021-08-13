@@ -271,7 +271,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
 
         for (const key in playerDataDEF) {
             const player = playerDataDEF[key]
-            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.5 
+            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.5
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
                 console.log(nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID))
