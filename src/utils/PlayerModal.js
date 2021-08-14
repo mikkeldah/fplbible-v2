@@ -20,7 +20,6 @@ function PlayerModal( props ) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-around',
-            // border: '1px solid rgb(29, 0, 29)'
         },
     };
 
@@ -30,9 +29,9 @@ function PlayerModal( props ) {
             style={customStyles}
             onRequestClose={props.onRequestClose}
         >
-            <Player name={props.player.full_name} web_name={props.player.web_name} price={props.player.price} total_points={props.player.total_points} team={props.player.team} short_name={props.player.short_name}
-                minutes={props.player.minutes} points_per_game={props.player.points_per_game} points_per_price={props.player.points_per_price}
-                points_per_price_per_game={props.player.points_per_price_per_game} nextFiveFix={nextFiveGames(props.fixData, props.player.short_name)}/>
+            <Player name={props.player ? props.player.full_name : "Not found"} web_name={props.player ? props.player.web_name : "Not found"} price={props.player ? props.player.price : "Not found"} total_points={props.player ? props.player.total_points : "Not found"} team={props.player ? props.player.team : "Not found"} short_name={props.player ? props.player.short_name : "MUN"}
+                minutes={props.player ? props.player.minutes : "Not found"} points_per_game={props.player ? props.player.points_per_game : "Not found"} points_per_price={props.player ? props.player.points_per_price : "Not found"}
+                points_per_price_per_game={props.player ? props.player.points_per_price_per_game : "Not found"} nextFiveFix={nextFiveGames(props.fixData, props.player ? props.player.short_name : "MUN")}/>
             <div className="player-modal-x-container">
                 <p onClick={props.onRequestClose}>×</p>
             </div>
