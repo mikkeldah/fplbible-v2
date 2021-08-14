@@ -3,6 +3,7 @@ import setTheme from "../../utils/Themes";
 import RecommenderInput from "./sub-components/RecommenderInput";
 import PlayerPick from "./sub-components/PlayerPick";
 import CustomModal from "../../utils/CustomModal";
+import PlayerModal from "../../utils/PlayerModal";
 
 
 function Recommender( props ) {
@@ -79,12 +80,36 @@ function Recommender( props ) {
         setModalIsOpen(false);
     }
 
+    const [ playerModalIsOpen, setPlayerModalIsOpen ] = useState(false);
+    const [ shownPlayerID, setShownPlayerID ] = useState(1);
+
+    const playerClicked = (id) => {
+        setShownPlayerID(id);
+        setPlayerModalIsOpen(true)
+    }
+
+    const closePlayerModal = () => {
+        setPlayerModalIsOpen(false)
+    }
+
+    const getPlayer = (id) => {
+        return playerData.find(player => {
+            return player.id === id;
+        })
+    }
+
     return (
         <div id="recommender-main-container">
             <CustomModal 
                 isOpen={modalIsOpen}
                 onRequestClose={errorDismissed}
                 text={'Could not find any player or group of players matching the input. Are you sure that you have entered the correct values?'}
+            />
+            <PlayerModal 
+                isOpen={playerModalIsOpen}
+                onRequestClose={closePlayerModal}
+                player={getPlayer(shownPlayerID)}
+                fixData={fixtureData}
             />
             <RecommenderInput sendDataToParent={sendDataToParent} searchButtonClicked={searchButtonClicked}/>
             <div id="recommender-results-main">
@@ -102,7 +127,12 @@ function Recommender( props ) {
                             {recommenderResults[0].map( result => {
                                 const [ playerStats, rScore ] = result;
                                 return (
-                                    <PlayerPick web_name={playerStats.web_name} teamName={playerStats.short_name} price={playerStats.price}/>    
+                                    <PlayerPick 
+                                        web_name={playerStats.web_name} 
+                                        teamName={playerStats.short_name} 
+                                        price={playerStats.price} 
+                                        onClick={() => playerClicked(playerStats.id)}
+                                    />    
                                     
                                 )
                             })}
@@ -116,8 +146,11 @@ function Recommender( props ) {
                             {recommenderResults[1].map( result => {
                                 const [ playerStats, rScore ] = result;
                                 return (
-                                    <PlayerPick web_name={playerStats.web_name} teamName={playerStats.short_name} price={playerStats.price}/>     
-                                    
+                                    <PlayerPick 
+                                        web_name={playerStats.web_name} 
+                                        teamName={playerStats.short_name} 
+                                        price={playerStats.price} 
+                                        onClick={() => playerClicked(playerStats.id)}                                    />                                    
                                 )
                             })}
                         </div>
@@ -130,8 +163,11 @@ function Recommender( props ) {
                             {recommenderResults[2].map( result => {
                                 const [ playerStats, rScore ] = result;
                                 return (
-                                    <PlayerPick web_name={playerStats.web_name} teamName={playerStats.short_name} price={playerStats.price}/>     
-                                    
+                                    <PlayerPick 
+                                        web_name={playerStats.web_name} 
+                                        teamName={playerStats.short_name} 
+                                        price={playerStats.price} 
+                                        onClick={() => playerClicked(playerStats.id)}                                    />                                    
                                 )
                             })}
                         </div>
@@ -144,8 +180,11 @@ function Recommender( props ) {
                             {recommenderResults[3].map( result => {
                                 const [ playerStats, rScore ] = result;
                                 return (
-                                    <PlayerPick web_name={playerStats.web_name} teamName={playerStats.short_name} price={playerStats.price}/>   
-                                    
+                                    <PlayerPick 
+                                        web_name={playerStats.web_name} 
+                                        teamName={playerStats.short_name} 
+                                        price={playerStats.price} 
+                                        onClick={() => playerClicked(playerStats.id)}                                    />                                    
                                 )
                             })}
                         </div>

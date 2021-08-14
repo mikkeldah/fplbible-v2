@@ -8,6 +8,7 @@ import './static/css/statsboard.css';
 import './static/css/recommender.css';
 import './static/css/captain-picks.css';
 import './static/css/contactpage.css';
+import './static/css/player-modal.css';
 
 
 ReactDOM.render(

@@ -20,20 +20,20 @@
     width: 450px;
     height: 350px;
     margin-bottom: 50px;
-    -moz-box-shadow: 0 0 10px rgb(110, 110, 110);
-    -webkit-box-shadow: 0 0 10px rgb(110, 110, 110);
-    box-shadow: 0 0 10px rgb(110, 110, 110);
+    -moz-box-shadow: 0 0 5px rgb(110, 110, 110);
+    -webkit-box-shadow: 0 0 5px rgb(110, 110, 110);
+    box-shadow: 0 0 5px rgb(110, 110, 110);
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;    
+    text-align: center; 
+    border-radius: 8px;   
     
 }
 
 .home-image-container {
     height: 60%;
     width: 100%;
-    border-bottom: 1.3px solid rgb(199, 199, 199);
 }
 
 .home-image-container img {
@@ -50,8 +50,12 @@
 }
 
 .home-title-and-desc-inner {
-    height: 70%;
+    height: 90%;
     width: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .home-option-container:hover {

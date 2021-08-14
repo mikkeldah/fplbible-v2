@@ -6,7 +6,7 @@ import Selector from './Selector';
 
 function OptionsContainer( props ) {
 
-    const defaultPreferences = ['Total points', 'Points per Game', true, true, true, true, 1000, [3.5, 14.0], 'All teams', 'Available', 'Always']
+    const defaultPreferences = ['Total points', 'Points per Game', true, true, true, true, 0, [3.5, 14.0], 'All teams', 'Available', 'Always']
     const [ preferences, setPreferences ] = useState(defaultPreferences);
 
     const sendDataToParent = (prefIndex, newValue) => {
@@ -55,7 +55,7 @@ function OptionsContainer( props ) {
                     <RegularSlider 
                         sendDataToParent={sendDataToParent}
                         prefIndex={6}  
-                        initialState={1000}
+                        initialState={0}
                         min={0} max={3000}
                         step={10} 
                     />  

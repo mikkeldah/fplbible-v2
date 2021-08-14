@@ -199,6 +199,11 @@
     box-shadow: 0 0 3px #ccc;
 }
 
+.player-pick-card:hover {
+    cursor: pointer;
+    background-color: rgb(247, 247, 247);
+}
+
 .player-pick-card p {
     margin: 3px;
     text-align: center;
