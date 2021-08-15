@@ -75,13 +75,13 @@ function App() {
     const [ apiURL, setApiURL ] = useState('https://www.fplbible.com/api/app/');
     
     const backupGameweek = {
-            "id": 1,
-            "deadline_time": "2021-08-13T17:30:00Z",
-            "finished": false,
-            "data_checked": false,
-            "is_previous": false,
-            "is_current": false,
-            "is_next": true
+        "id": 2,
+        "deadline_time": "2100-08-21T10:00:00Z",
+        "finished": false,
+        "data_checked": false,
+        "is_previous": false,
+        "is_current": false,
+        "is_next": true
     }
     
     //Fetching gameweek data
