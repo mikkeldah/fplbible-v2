@@ -5,7 +5,7 @@ def start():
     scheduler = BackgroundScheduler()
 
     #Add job to scheduler
-    scheduler.add_job(update_db, "interval", minutes=5, id="data_001", replace_existing=True)
+    scheduler.add_job(update_db, "interval", minutes=10, id="data_001", replace_existing=True)
     scheduler.start()
 
 def update_db():

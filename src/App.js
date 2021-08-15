@@ -65,7 +65,7 @@ function App() {
         'Captain Picks': "Wondering who to pick for captaincy before the next gameweek? Selecting the right captain are vital for FPL success. This page will provide you with the best picks before each gameweek."
                         +" The algorithm used rank the players based on availability, stats, performances and the difficulty of the next opponent.",
         'Players': "Get key information about every player in the FPL player database by using the search-field.",
-        'Contact': "Got any ideas for new features or improvement of existing ones? Or maybe you've found a bug or something that's not working properly on the site? I would love to hear your input, so please, feel free to fill out the contact form and submit, and I will answer as soon as possible."
+        'Contact': "Got any ideas for new features or improvement of existing ones? Or maybe you've found a bug or something that's not working properly on the site? I would love to hear your input so feel free to fill out the contact form and submit, and I will answer as soon as possible."
     }
 
     const handlePageSwitch = (newPage) => {
@@ -74,8 +74,7 @@ function App() {
 
     const [ apiURL, setApiURL ] = useState('https://www.fplbible.com/api/app/');
     
-    const [ backupGameweek, setBackupGameweek ] = useState([
-        {
+    const backupGameweek = {
             "id": 1,
             "deadline_time": "2021-08-13T17:30:00Z",
             "finished": false,
@@ -83,10 +82,8 @@ function App() {
             "is_previous": false,
             "is_current": false,
             "is_next": true
-        }])
+    }
     
-
-
     //Fetching gameweek data
     const [ gameweekData, setGameweekData ] = useState([])
     
@@ -156,7 +153,7 @@ function App() {
 function getCurrentGameweek(gwData) {
     for (const key in gwData) {
         const gameweek = gwData[key]
-        if (gameweek.is_next || (gameweek.is_current && !gameweek.finished)) {
+        if (gameweek.is_next) {
             return gameweek;
         }
     }
