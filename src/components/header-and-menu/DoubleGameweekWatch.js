@@ -17,8 +17,8 @@ function DoubleGameweekWatch( props ) {
         toHide.style.opacity = "0";
       }
 
-    const [ dgwCount, setDgwCount ] = useState(0);
-    const [ zCount, setZCount ] = useState(0)
+    let doubleGwCount = 0;
+    let zeroGwCount = 0;
 
     return (
         <div id="subheader-item-double-gw" className="subheader-item" style={{borderRight: "0"}}>
@@ -29,10 +29,10 @@ function DoubleGameweekWatch( props ) {
                     <div id="double-gameweek-teams-container" style={{borderRight: "1px solid rgb(138, 80, 138)"}}>
                         <p style={{textAlign: "center", fontSize: "0.9rem", borderBottom: "1px solid rgb(138, 80, 138)", borderTop: "1px solid rgb(138, 80, 138)", fontWeight: "bold"}}>Double gameweek</p>
                         <div style={{display: "flex", flexDirection:"column", alignItems: "center", width: "100%", overflowY: "auto"}}>
-                            {dgwCount === 0 && <p style={{marginTop: "50px"}}>None</p>}
                             {Object.keys(getDoubleGameweekTeams(props.fixtureData, props.gameweek.id)).map((keyName, i) => {
                                 const teamFixes = getDoubleGameweekTeams(props.fixtureData, props.gameweek.id)[keyName];
                                 if (teamFixes.length === 2) {
+                                    doubleGwCount = doubleGwCount + 1;
                                     return (
                                         <div className="double-gameweek-team-container">
                                             <div style={{display: "flex", width: "100%", height: "40%", alignItems: "center", justifyContent: "center"}}>
@@ -63,15 +63,16 @@ function DoubleGameweekWatch( props ) {
                                     )
                                 }
                             })}
+                            {doubleGwCount === 0 && <p style={{marginTop: "50px"}}>None</p>}
                         </div>
                     </div>
                     <div id="double-gameweek-teams-container">
                         <p style={{textAlign: "center", fontSize: "0.9rem", borderBottom: "1px solid rgb(138, 80, 138)", borderTop: "1px solid rgb(138, 80, 138)", fontWeight: "bold"}}>Zero gameweek</p>
                         <div style={{display: "flex", flexDirection:"column", alignItems: "center", width: "100%", overflowY: "auto"}}>
-                            {zCount === 0 && <p style={{marginTop: "50px"}}>None</p>}
                             {Object.keys(getDoubleGameweekTeams(props.fixtureData, props.gameweek.id)).map((keyName, i) => {
                                 const teamFixes = getDoubleGameweekTeams(props.fixtureData, props.gameweek.id)[keyName];
                                 if (teamFixes.length === 0) {
+                                    zeroGwCount = zeroGwCount + 1;
                                     return (
                                         <div className="double-gameweek-team-container">
                                             <div style={{display: "flex", width: "100%", height: "40%", alignItems: "center", justifyContent: "center"}}>
@@ -83,6 +84,7 @@ function DoubleGameweekWatch( props ) {
                                     )
                                 }
                             })}
+                             {zeroGwCount === 0 && <p style={{marginTop: "50px"}}>None</p>}
                         </div>
                     </div>
                 </div>

@@ -83,7 +83,7 @@ function App() {
         "is_current": false,
         "is_next": true
     }
-    
+
     //Fetching gameweek data
     const [ gameweekData, setGameweekData ] = useState([])
     

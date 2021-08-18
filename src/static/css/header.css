@@ -266,9 +266,9 @@ body {
 }
 
 .double-gameweek-team-container {
-    width: 60%;
+    width: 130px;
     height: 60px;
-    margin: 3px 0;
+    margin: 8px 0;
 }
 
 #zero-gameweek-teams-container {
