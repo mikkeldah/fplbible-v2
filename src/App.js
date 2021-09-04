@@ -15,20 +15,21 @@ import Recommender from './components/recommender-page/Recommender';
 import Players from './components/players-page/Players';
 import CaptainPicks from './components/captain-picks-page/CaptainPicks';
 import Contact from './components/contact-page/Contact';
+import MyTeam from './components/my-team-page/MyTeam';
 
 function App() {
 
-    useEffect(() => {
-        const script1 = document.createElement('script');
-        script1.async = true; 
-        script1.src = "https://www.googletagmanager.com/gtag/js?id=G-FHM7FVGK44";
+    // useEffect(() => {
+    //     const script1 = document.createElement('script');
+    //     script1.async = true; 
+    //     script1.src = "https://www.googletagmanager.com/gtag/js?id=G-FHM7FVGK44";
 
-        const script2 = document.createElement('script');
-        script2.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', 'G-FHM7FVGK44');";
+    //     const script2 = document.createElement('script');
+    //     script2.text = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', 'G-FHM7FVGK44');";
 
-        document.body.appendChild(script1);
-        document.body.appendChild(script2);
-    }, [])
+    //     document.body.appendChild(script1);
+    //     document.body.appendChild(script2);
+    // }, [])
 
     /* Hides the drop in menu when a link or the rest of the page are clicked */
     function hideMenuOnClick() {
@@ -110,6 +111,10 @@ function App() {
                         <Home handlePageSwitch={handlePageSwitch}/>
                         <div id="shadow-div" onClick={hideMenuOnClick}></div>
                     </Route> 
+                    <Route exact path="/my-team">
+                        <MyTeam handlePageSwitch={handlePageSwitch}/>
+                        <div id="shadow-div" onClick={hideMenuOnClick}></div>
+                    </Route>
                     <Route exact path="/recommender">
                         <Recommender 
                             handlePageSwitch={handlePageSwitch} 
