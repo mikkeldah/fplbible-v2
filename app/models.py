@@ -26,8 +26,6 @@ class Player(models.Model):
     form = models.FloatField(null=True)
     ict_index = models.FloatField(null=True)
 
-    #... the list goes on
-
 
     def __str__(self):
         return self.web_name   
