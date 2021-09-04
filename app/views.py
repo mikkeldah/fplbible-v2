@@ -1,4 +1,3 @@
-from django.db.models import query
 from django.shortcuts import render
 from .models import Player, Fixture, Gameweek
 from .serializers import PlayerSerializer, FixtureSerializer, GameweekSerializer
