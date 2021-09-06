@@ -7,7 +7,7 @@ import PlayerModal from "../../utils/PlayerModal";
 
 
 function Recommender( props ) {
-
+    
     //set theme to purple when rendering the players page
     useEffect(() => {
         setTheme('#38003c', '#530553');
@@ -19,7 +19,7 @@ function Recommender( props ) {
     })
 
     //Fetching playerdata
-    const [ playerData, setPlayerData ] = useState([]);
+    const [ playerData, setPlayerData ] = useState(pData);
 
     useEffect(() => {
         fetch(props.apiURL+'players')
@@ -33,7 +33,7 @@ function Recommender( props ) {
     }, []); 
 
     //Fetching fixturedata
-    const [ fixtureData, setFixtureData ] = useState([]);
+    const [ fixtureData, setFixtureData ] = useState(fixData);
 
     useEffect(() => {
         fetch(props.apiURL+'fixtures')
@@ -237,7 +237,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
 
         for (const key in playerDataMID) {
             const player = playerDataMID[key]
-            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 5.5 
+            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 5.5
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
                 const rScore = (player.points_per_game / topPPPPGMID) + (player.ict_index / topICTMID) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
@@ -274,7 +274,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
 
         for (const key in playerDataFWD) {
             const player = playerDataFWD[key]
-            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 5.0 
+            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.9
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
                 const rScore = (player.points_per_game / topPPPPGFWD) + (player.ict_index / topICTFWD) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
@@ -310,7 +310,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
 
         for (const key in playerDataDEF) {
             const player = playerDataDEF[key]
-            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.5
+            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.9
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
                 console.log(nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID))
@@ -347,7 +347,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
 
         for (const key in playerDataGKP) {
             const player = playerDataGKP[key]
-            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.0 
+            if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 3.9 
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
                 const rScore = (player.points_per_game / topPPPPGGKP) + (player.ict_index / topICTGKP) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
