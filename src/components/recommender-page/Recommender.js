@@ -19,7 +19,7 @@ function Recommender( props ) {
     })
 
     //Fetching playerdata
-    const [ playerData, setPlayerData ] = useState(pData);
+    const [ playerData, setPlayerData ] = useState([]);
 
     useEffect(() => {
         fetch(props.apiURL+'players')
@@ -33,7 +33,7 @@ function Recommender( props ) {
     }, []); 
 
     //Fetching fixturedata
-    const [ fixtureData, setFixtureData ] = useState(fixData);
+    const [ fixtureData, setFixtureData ] = useState([]);
 
     useEffect(() => {
         fetch(props.apiURL+'fixtures')
