@@ -7,7 +7,7 @@ import PlayerModal from "../../utils/PlayerModal";
 
 
 function Recommender( props ) {
-    
+   
     //set theme to purple when rendering the players page
     useEffect(() => {
         setTheme('#38003c', '#530553');
@@ -110,6 +110,7 @@ function Recommender( props ) {
                 onRequestClose={closePlayerModal}
                 player={getPlayer(shownPlayerID)}
                 fixData={fixtureData}
+                currentGW={props.gameweek.id}
             />
             <RecommenderInput sendDataToParent={sendDataToParent} searchButtonClicked={searchButtonClicked}/>
             <div id="recommender-results-main">
@@ -205,7 +206,7 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
     const nPlayersRequested = nGKP + nDEF + nMID + nFWD
     const notInclude = inputValues[5]
 
-    playerData = playerData.filter(player => player.minutes > 0)
+    playerData = playerData.filter(player => player.minutes > minimumMinutesPlayed(currentGameweekID))
     playerData = playerData.filter(player => player.status === 'Available')
     playerData = playerData.filter(player => !notInclude.includes(player.team))
     playerData = playerData.filter(player => nextGameweekGames(fixtureData, player.short_name, currentGameweekID).length > 0)
@@ -214,8 +215,6 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
     const playerDataDEF = playerData.filter(player => player.position === 'DEF')
     const playerDataMID = playerData.filter(player => player.position === 'MID')
     const playerDataFWD = playerData.filter(player => player.position === 'FWD')
-
-    //greedy algorithm
 
     //lists of recommendations which will be returned
     let GKPresults = []
@@ -313,7 +312,6 @@ function getRecommendations(inputValues, playerData, fixtureData, currentGamewee
             if ( (bank - player.price >= 0) && (((bank - player.price) / (nGKP + nDEF + nMID + nFWD - 1))  > 4.9
             || (nGKP + nDEF + nMID + nFWD - 1) === 0) && (notThreeOrMoreRecommendationsFromSameTeam(player.team, teamsAdded))) {
                 // IMPORTANT: calculation of the score that the recommender will use to choose top players. 
-                console.log(nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID))
                 const rScore = (player.points_per_game / topPPPPGDEF) + (player.ict_index / topICTDEF) + (1 - nextFiveGamesDiffAvg(fixtureData, player.short_name, currentGameweekID) / 5)
                 if (rScore > topRScoreDEF) {
                     topPlayerDEF = player;
@@ -388,8 +386,6 @@ function nextFiveGamesDiffAvg(fixData, teamNameShort, currentGameweekID) {
                 fixList.push([fix['gameweek'], fix['short_name_h'], fix['team_a_difficulty'], 'A'])
             }
             if (fixList.length === 5) {
-                console.log(teamNameShort)
-                console.log(fixList)
                 return avgDifficultyOfFixList(fixList);
             }
         }
@@ -447,6 +443,10 @@ function getTopAttributeScore(data, att) {
 function notThreeOrMoreRecommendationsFromSameTeam(team, teamsAdded) {
     const teams = teamsAdded.filter(t => t === team);
     return teams.length === 3 ? false : true;
+}
+
+function minimumMinutesPlayed(nGameweeks) {
+    return 90 * nGameweeks / 4;
 }
 	
 export default Recommender;

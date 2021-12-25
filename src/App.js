@@ -51,7 +51,6 @@ function App() {
 
     }
 
-
     const [ dropInMenuHidden, setDropInMenuVisibility ] = useState(true);
 
     const [ page, setPage ] = useState('Home')

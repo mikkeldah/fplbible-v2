@@ -17,7 +17,7 @@ function OptionsContainer( props ) {
 
     useEffect(() => {
         props.prefChange(preferences);
-    }, [preferences]);
+    }, [preferences]); 
 
     return (
         <div id="statsboard-options-container">
